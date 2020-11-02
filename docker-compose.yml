@@ -1,0 +1,92 @@
+version: "3"
+
+networks:
+  twinelink:
+    driver: bridge
+
+volumes:
+  mysql:
+    driver: local
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: nginx.Dockerfile
+
+    container_name: nginx
+    ports:
+      - "8088:80"
+    volumes:
+      - ./:/var/www/html
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - php
+      - mysql
+    networks:
+      - twinelink
+
+  mysql:
+    image: mysql:5.7.22
+    container_name: mysql
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "4306:3306"
+    volumes:
+      - mysql:/var/lib/mysql/
+    environment:
+      MYSQL_DATABASE: twinelink
+      MYSQL_USER: loyal
+      MYSQL_PASSWORD: Loyalti123
+      MYSQL_ROOT_PASSWORD: Loyalti123
+      SERVICE_TAGS: dev
+      SERVICE_NAME: mysql
+
+    networks:
+      - twinelink
+
+  php:
+    build:
+      context: .
+      dockerfile: php.Dockerfile
+    container_name: php
+    volumes:
+      - ./:/var/www/html
+    ports:
+      - "9000:9000"
+    networks:
+      - twinelink
+
+  composer:
+    image: composer:latest
+    container_name: composer
+    volumes:
+      - ./:/var/www/html
+    working_dir: /var/www/html
+    entrypoint: ["composer", "--ignore-platform-reqs"]
+    networks:
+      - twinelink
+
+  npm:
+    image: npm:13.7
+    container_name: npm
+    volumes:
+      - ./:/var/www/html
+    working_dir: /var/www/html
+    entrypoint: ["npm"]
+    networks:
+      - twinelink
+
+  artisan:
+    build: .
+    dockerfile: php.Dockerfile
+    container_name: artisan
+    volumes:
+      - ./:/var/www/html
+    depends_on:
+      - mysql
+    working_dir: /var/www/html
+    entrypoint: ["php", "/var/www/html/artisan"]
+    networks:
+      - twinelink
