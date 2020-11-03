@@ -32,7 +32,8 @@ class LinkController extends Controller
         $link = Link::create($data);
        return $link?response()->json(['status'=>'success','code'=>200,'data'=>$link]):response()->json(['status'=>'fail','code'=>400,'error'=>'something went wrong']);
        } catch (\Throwable $th) {
-           throw $th;
+        return response()->json(['status'=>'fail','code'=>400,'error'=>'something went wrong']);
+           //throw $th;
        }
 
     }
@@ -56,7 +57,8 @@ class LinkController extends Controller
        $resp =Link::where('id',$link)->get();
         return $res?response()->json(['status'=>'success','code'=>200,'data'=>$resp]):response()->json(['status'=>'fail','code'=>400,'error'=>'something went wrong']);
         } catch (\Throwable $th) {
-            throw $th;
+            return response()->json(['status'=>'fail','code'=>400,'error'=>'something went wrong']);
+            //throw $th;
         }
 
     }

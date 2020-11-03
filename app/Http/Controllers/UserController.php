@@ -153,8 +153,8 @@ public function register(Request $request){
             return $res?redirect()->back()->with('msg','picture updated'):redirect()->back()->withErrors(['errors'=>'something went wrong']);
 
         } catch (\Throwable $th) {
-            throw $th;
-            //return redirect()->back()->withErrors(['errors'=>'something went wrong']);
+            //throw $th;
+            return redirect()->back()->withErrors(['errors'=>'something went wrong. file too large']);
         }
     }
     public function deleteAccount($user_id){ 
@@ -192,7 +192,8 @@ public function register(Request $request){
         return response()->json(['status'=>'success','code'=>200,'data'=>'a reset link has been sent to your mail']);
 
         } catch (\Throwable $th) {
-            throw $th;
+            //throw $th;
+            return response()->json(['status'=>'fail','code'=>400,'error'=>'link not sent, something went wrong']);
         }
     }
 
