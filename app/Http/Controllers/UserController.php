@@ -134,7 +134,7 @@ public function register(Request $request){
 
             $picture  = $request->file('picture');
             
-            $path = $this->addImage('uploads/avatar/',$picture,'http://localhost:8000/');
+            $path = $this->addImage('uploads/avatar/',$picture,env('APP_URL'));
 
             $res = User::where('id',$user_id)->update(['picture'=>$path]);
             return $res?redirect()->back()->with('msg','picture updated'):redirect()->back()->withErrors(['errors'=>'something went wrong']);

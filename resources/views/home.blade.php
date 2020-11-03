@@ -196,7 +196,7 @@
                         <h5 class="text-gray-700"> <i class="fas fa-phone"></i> 0548480707</h5>
                     </div>
                     <div class="flex flex-col">
-                        <h5 class="text-gray-700"> <i class="fa fa-envelope"></i> info@twinelink.com</h5>
+                        <h5 class="text-gray-700"> <i class="fa fa-envelope"></i> twinelink@gmail.com</h5>
                     </div>
         
                    
