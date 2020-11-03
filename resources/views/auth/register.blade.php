@@ -37,7 +37,7 @@
                     Sign Up
                 </button>
             <a class="inline-block align-baseline font-bold text-sm text-gray-700 hover:text-gray-500 px-4 py-2" href="{{URL::to('/login')}}">
-                Already have an acocount? Log in
+                Already have an account? Log in
             </a>
               
         </div>
