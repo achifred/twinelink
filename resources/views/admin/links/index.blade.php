@@ -21,7 +21,7 @@
                     
                         
                     
-                <a href="{{$item->link}}" @click="addVisit({{$item->id}})"  class=" w-5/6 lg:w-3/12  px-4 py-2 mb-5   capitalize" type="button" 
+                <a href="{{$item->link}}" @click="addVisit({{$item->id}})"  class=" w-5/6 lg:w-3/12  px-4 py-2 mb-5 hover:shadow-xl  capitalize rounded-md border-b-4 border-green-600 " type="button" 
                     style=" background-color:{{$text_color}};color:{{$background_color}}; " target="blank">
                    
                     {{$item->name}} 
@@ -34,7 +34,7 @@
 
         </div>
 
-    <a href="{{URL::to('/')}}" class="text-gray-500 font-bold  fixed text-xl text-center left-0 right-0" style="bottom:1rem;">@TwinedLink</a>
+    <a href="{{URL::to('/')}}" class="text-gray-500 font-bold  fixed text-xl text-center left-0 right-0" style="bottom:1rem;">@TwineLink</a>
     </div>
 @endsection
 

@@ -30,10 +30,16 @@ class UserController extends Controller
     }
 
     public function create(){
+        if(Auth::user()){
+            return redirect()->back();
+        }
         return view('auth.login');
     }
 
     public function signup(){
+        if(Auth::user()){
+            return redirect()->back();
+        }
         return view('auth.register');
     }
    

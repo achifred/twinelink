@@ -21,9 +21,12 @@
         </div>
         
 
-        <div class="border-b border-orange-600 py-2 mb-4">
+        <div class=" flex items-center border-b border-orange-600 py-2 mb-4">
             
             <input type="password" name="password" id="password" class="appearance-none bg-transparent border-none w-full text-gray-500 mr-3 py-1 px-2 leading-tight focus:outline-none" placeholder="Password">
+            <button onclick="togglePasswordVisibility()" class="flex-shrink-0 bg-gray-600 hover:bg-teal-700  hover:border-teal-700 text-sm  text-white py-1 px-2 rounded" type="button">
+                <i class="fa fa-eye"></i>
+              </button>
         </div>
         
        
@@ -47,4 +50,15 @@
           </a>
     </div>
 </div>
+
+<script>
+    function togglePasswordVisibility() {
+  var input = document.getElementById("password");
+  if (input.type === "password") {
+    input.type = "text";
+  } else {
+    input.type = "password";
+  }
+}
+</script>
 @endsection

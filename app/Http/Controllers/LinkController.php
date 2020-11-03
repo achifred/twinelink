@@ -26,7 +26,7 @@ class LinkController extends Controller
         $data = $request->only(['name','link','user_id']);
         $isValid = Validator::make($data,$rules);
         if($isValid->fails()){
-            return response()->json(['status'=>'fail','code'=>400,'errors'=>$isValid->messages()]);
+            return response()->json(['status'=>'fail','code'=>400,'error'=>$isValid->messages()]);
         }
 
         $link = Link::create($data);
@@ -50,7 +50,7 @@ class LinkController extends Controller
         $data = $request->only(['name','link']);
         $isValid = Validator::make($data,$rules);
         if($isValid->fails()){
-            return response()->json(['status'=>'fail','code'=>400,'errors'=>$isValid->messages()]);
+            return response()->json(['status'=>'fail','code'=>400,'error'=>$isValid->messages()]);
         }
        $res = Link::where('id',$link)->update($data);
        $resp =Link::where('id',$link)->get();

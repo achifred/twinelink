@@ -46,6 +46,70 @@
             </div>
         </div>
 
+        <section>
+          <h3 class="text-center text-3xl text-gray-900 font-bold capitalize pt-8">How it works</h3>
+      <div class="block lg:flex flex-wrap justify-center ">
+
+        <div class="lg:pt-12 pt-6 w-full md:w-4/12 px-4 text-center">
+          <div
+            class="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg"
+          >
+            <div class="px-4 py-5 flex-auto">
+              <div
+                class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-teal-700"
+              >
+                <i class="fa fa-user-circle fa-2x"></i>
+              </div>
+              <h6 class="text-xl font-semibold">Create Account</h6>
+              <p class="mt-2 mb-4 text-gray-600">
+                Create an account if you don't have one already. If you already have an account log in to your dashboard.
+              </p>
+            </div>
+          </div>
+        </div>
+          
+
+        <div class="lg:pt-12 pt-6 w-full md:w-4/12 px-4 text-center">
+          <div
+            class="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg"
+          >
+            <div class="px-4 py-5 flex-auto">
+              <div
+                class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-orange-700"
+              >
+                <i class="fa fa-link fa-2x"></i>
+              </div>
+              <h6 class="text-xl font-semibold">Add Links</h6>
+              <p class="mt-2 mb-4 text-gray-600">
+                From your admin dashboard, add as many links to your contents as you can. 
+                A one time  twinelink will be generated for you containing all the links you've added.
+              </p>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="lg:pt-12 pt-6 w-full md:w-4/12 px-4 text-center">
+          <div
+            class="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg"
+          >
+            <div class="px-4 py-5 flex-auto">
+              <div
+                class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-gray-700"
+              >
+                <i class="fa fa-share-alt fa-2x"></i>
+              </div>
+              <h6 class="text-xl font-semibold">Share Your Link</h6>
+              <p class="mt-2 mb-4 text-gray-600">
+                Happily share the twinelink generated for you. Hurray!! you are good to go. You are now all over the internet. 
+              </p>
+            </div>
+          </div>
+        </div>
+             
+    </div>
+        </section>
+
         <section data-aos="fade-right">
           <div class="flex flex-wrap items-center mt-32" >
               <div class="w-full md:w-5/12 px-4 mr-auto ml-auto">

@@ -14,7 +14,7 @@
               <form v-if="isChangePicture" class="bg-white rounded  px-8 pt-6 pb-8 mb-4 mt-3" action="{{URL::to('/admin/acount/picture/'.auth()->user()->id)}}" method="POST" enctype="multipart/form-data">
                    @csrf     
                 
-                  <div class="flex items-center border-b border-orange-500 py-2 mb-4">
+                  <div class="flex items-center border-b border-green-500 py-2 mb-4">
                       
                   <input type="file" name="picture" id="picture"  class="appearance-none bg-transparent border-none w-full text-gray-500 mr-3 py-1 px-2 leading-tight focus:outline-none"
                     @change="getPicture($event)"  required>
@@ -22,14 +22,14 @@
       
                   
                   <div class=" flex flex-wrap text-center ">
-                      <button  class="bg-orange-600 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+                      <button  class="bg-green-600 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
                           Change Picture
                       </button>
                     
                   </div>
                   
               </form>
-            <img v-else class="h-20 w-20 rounded-full align-middle " v-bind:src="avatar==''?'http://localhost:8000/img/user.png':avatar" alt="">
+            <img v-else class="h-20 w-20 rounded-full align-middle " v-bind:src="avatar==''?'https://twinelink.com/img/user.png':avatar" alt="">
               </div>
             </div>
            
@@ -69,19 +69,19 @@
             <form v-if="isPassword" action="{{URL::to('/admin/password/'.auth()->user()->id)}}" method="POST"  class="bg-white rounded  px-8 pt-6 pb-8 mb-4 mt-3">
                         
                 @csrf
-                <div class="flex items-center border-b border-orange-500 py-2 mb-4">
+                <div class="flex items-center border-b border-green-500 py-2 mb-4">
                     
                     <input type="password" name="oldpassword" id="oldpassword"  class="appearance-none bg-transparent border-none w-full text-gray-500 mr-3 py-1 px-2 leading-tight focus:outline-none"
                    placeholder="old password"  required>
                 </div>
     
-                <div class="flex items-center border-b border-orange-500 py-2 mb-6">
+                <div class="flex items-center border-b border-green-500 py-2 mb-6">
                     
                     <input type="password" name="password" id="password"  class="appearance-none bg-transparent border-none w-full text-gray-500 mr-3 py-1 px-2 leading-tight focus:outline-none"
                 placeholder="new password" required>
                 </div>
                 <div class=" flex flex-wrap text-center ">
-                    <button  class="bg-orange-600 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+                    <button  class="bg-green-600 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
                         Change Password
                     </button>
                   
@@ -91,19 +91,19 @@
             <form v-else class="bg-white rounded  px-8 pt-6 pb-8 mb-4 mt-3">
                         
                 
-                    <div class="flex items-center border-b border-orange-500 py-2 mb-4">
+                    <div class="flex items-center border-b border-green-500 py-2 mb-4">
                         
                         <input type="text" name="username" id="username"  class="appearance-none bg-transparent border-none w-full text-gray-500 mr-3 py-1 px-2 leading-tight focus:outline-none"
                     :value="username"  required>
                     </div>
         
-                    <div class="flex items-center border-b border-orange-500 py-2 mb-6">
+                    <div class="flex items-center border-b border-green-500 py-2 mb-6">
                         
                         <input type="email" name="email" id="email"  class="appearance-none bg-transparent border-none w-full text-gray-500 mr-3 py-1 px-2 leading-tight focus:outline-none"
                     :value="email" required>
                     </div>
                     <div class=" flex flex-wrap text-center ">
-                        <button @click.prevent="updateDetails" class="bg-orange-600 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+                        <button @click.prevent="updateDetails" class="bg-green-600 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
                             Save Details
                         </button>
                       
@@ -177,14 +177,14 @@
                 axios.defaults.headers.common['Authorization']=`Bearer ${this.token}`
 
               )
-              console.log(res)
+              //console.log(res)
               if(res.data.status=="success"){
                this.avatar= res.data.data            
                
               return
             }
           } catch (error) {
-            console.log(error)
+            //console.log(error)
           }
          },
 
@@ -196,7 +196,7 @@
               },
               axios.defaults.headers.common['Authorization']=`Bearer ${this.token}`
               )
-              console.log(res)
+              //console.log(res)
               if(res.data.status=="success"){
                this.username= res.data.data[0].username            
                this.email= res.data.data[0].email 

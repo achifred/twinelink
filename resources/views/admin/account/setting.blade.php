@@ -31,7 +31,7 @@
             <div class="w-full lg:w-6/12 ml-auto mr-auto">
                 <div class=" block lg:flex lg:justify-center mb-3 mx-auto">
                     <span class="text-gray-900 mr-2">My TwineLink:</span>
-                <a href="{{URL::to('/'.auth()->user()->username)}}" class="text-gray-500" target="blank"><u>http://localhost:8000/{{auth()->user()->username}}</u></a>
+                <a href="{{URL::to('/'.auth()->user()->username)}}" class="text-gray-500" target="blank"><u>{{ url('') }}/{{auth()->user()->username}}</u></a>
                 </div>
                 <div class="flex justify-center">
                     <div class="bg-black  w-full lg:w-6/12 rounded-lg pt-4 " style="min-height: 100vh">
@@ -46,7 +46,7 @@
                               <div class="flex flex-col text-center pt-10 ">
                                 
                                    <div v-for="item in links" @key="item.id">
-                                   <a :href="item.link" class="  px-4 py-2 mb-5 capitaliz" type="button" :style="{backgroundColor:textColors, color:bg}">@{{item.name}}</a>
+                                   <a :href="item.link" class="  px-4 py-2 mb-5 capitaliz rounded-md border-b-4 border-green-600" type="button" :style="{backgroundColor:textColors, color:bg}">@{{item.name}}</a>
                                    </div>
                                     
                               </div>
@@ -111,7 +111,7 @@
                         const res = await axios.get(`/api/themes`,
                         axios.defaults.headers.common['Authorization']=`Bearer ${this.token}`
                         )
-                        console.log(res.data.data)
+                        //console.log(res.data.data)
                         this.themes = await res.data.data
                     } catch (error) {
                         
