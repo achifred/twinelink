@@ -10,6 +10,7 @@ use Auth;
 use Hash;
 use Session;
 use URL;
+use Image;
 
 use App\Color;
 
@@ -22,7 +23,8 @@ class UserController extends Controller
         $path = public_path($folderName);
         
         $filename = $image->getClientOriginalName();
-        $image->move($path, $filename);
+        Image::make($image)->resize(150,150)->save($path. $filename);
+        //$image->move($path, $filename);
         $storagePath = $fileUrl.$folderName.$filename;
 
         return $storagePath;
@@ -137,7 +139,12 @@ public function register(Request $request){
             if(!$request->hasFile('picture')){
                 return redirect()->back()->withErrors(['errors'=>'no image selected']);
             }
-
+            $rules =['picture'=>'image|mimes:jpeg,png,jpg,gif,svg|max:5048'];
+            $data = $request->only(['picture']);
+            $is_valid = Validator::make($data, $rules);
+            if($is_valid->fails()){
+                return redirect()->back()->withErrors($is_valid)->withInp();
+            }
             $picture  = $request->file('picture');
             
             $path = $this->addImage('uploads/avatar/',$picture,env('APP_URL'));
@@ -147,6 +154,7 @@ public function register(Request $request){
 
         } catch (\Throwable $th) {
             throw $th;
+            //return redirect()->back()->withErrors(['errors'=>'something went wrong']);
         }
     }
     public function deleteAccount($user_id){ 

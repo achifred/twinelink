@@ -5,6 +5,10 @@
         
         <div class=" block lg:flex ">
             <div class="w-full lg:w-6/12 ml-auto mr-auto">
+                <div class=" block lg:flex lg:justify-center mb-3 mx-auto">
+                    <span class="text-gray-900 mr-2">My TwineLink:</span>
+                <a href="{{URL::to('/'.auth()->user()->username)}}" class="text-gray-500" target="blank"><u>{{ url('') }}/{{auth()->user()->username}}</u></a>
+                </div>
                 <h3 class="text-gray-800 font-bold text-3xl leading-relaxed text-justify">Themes</h3>
                 
                 <div class="block lg:flex container mx-auto flex-wrap  ">
@@ -22,17 +26,12 @@
 
                    
 
-                    
-                    
 
                 </div>
             </div>
 
-            <div class="w-full lg:w-6/12 ml-auto mr-auto">
-                <div class=" block lg:flex lg:justify-center mb-3 mx-auto">
-                    <span class="text-gray-900 mr-2">My TwineLink:</span>
-                <a href="{{URL::to('/'.auth()->user()->username)}}" class="text-gray-500" target="blank"><u>{{ url('') }}/{{auth()->user()->username}}</u></a>
-                </div>
+            <div class="w-full lg:w-6/12 ml-auto mr-auto" id="linkitems">
+               
                 <div class="flex justify-center">
                     <div class="bg-black  w-full lg:w-6/12 rounded-lg pt-4 " style="min-height: 100vh">
                         <div class=" mx-auto  w-5/6  rounded-lg   " style="min-height: 100vh" :style="{background:bg}">
@@ -130,6 +129,8 @@
                         if(res.data.status=="success"){
                             this.bg = res.data.data.background_color
                             this.textColors=res.data.data.text_color
+                            let elem = document.getElementById('linkitems')
+                            elem.scrollIntoView()
                             return
                         }
                     } catch (error) {

@@ -5,6 +5,10 @@
         
         <div class=" block lg:flex ">
             <div class="w-full lg:w-6/12 ml-auto mr-auto">
+                <div class=" block lg:flex lg:justify-center mb-3 mx-auto">
+                    <span class="text-gray-900 mr-2">My TwineLink:</span>
+                <a href="{{URL::to('/'.auth()->user()->username)}}" class="text-gray-500" target="blank"><u>{{ url('') }}/{{auth()->user()->username}}</u></a>
+                </div>
                 <div class=" w-full flex justify-center">
                     <form v-if="isEdit" class="bg-white rounded  px-8 pt-6 pb-8 mb-4 mt-3">
                         
@@ -100,10 +104,7 @@
 
             <div class="w-full lg:w-6/12 ml-auto mr-auto">
                
-                <div class=" block lg:flex lg:justify-center mb-3 mx-auto">
-                    <span class="text-gray-900 mr-2">My TwineLink:</span>
-                <a href="{{URL::to('/'.auth()->user()->username)}}" class="text-gray-500" target="blank"><u>{{ url('') }}/{{auth()->user()->username}}</u></a>
-                </div>
+                
                 <div class="flex justify-center">
                     <div class="bg-black  w-full lg:w-6/12 rounded-lg pt-4 " style="min-height: 100vh">
                         <div class=" mx-auto  w-5/6  rounded-lg   "  style="background:{{auth()->user()->color->background_color}};min-height: 100vh">
