@@ -22,8 +22,10 @@
                     <div class="w-full lg:w-6/12 mr-auto ml-auto text-center px-4">
 
                         <h1 class=" text-4xl lg:text-6xl font-bold text-gray-200">All your links in one safe place</h1>
-                        <p class="text-xl italic font-bold leading-relaxed text-gray-100">Let your audience connect with you using one link</p>
-                        <div class="block lg:flex flex-wrap justify-center mt-5 mb-5">
+                        <p class="text-2xl  font-bold leading-relaxed text-gray-100">Let your audience connect with you using one link</p>
+
+                       
+                        <div class="block lg:flex flex-wrap justify-center mt-8 mb-8">
                            <div class="mb-10  lg:mb-0">
                             <a title="Register" class=" bg-teal-900 hover:bg-orange-600 text-gray-100 font-bold capitalize rounded px-4 py-2 " href="{{URL::to('/register')}}" >get started for free</a>
                            </div>
@@ -36,7 +38,7 @@
                             @endif
                            </div>
                           </div>
-
+                          <p class="text-lg italic font-bold  leading-relaxed text-gray-100 ">Do more with one link !!</p>
                         
                       </div>
                     </div>
@@ -112,7 +114,7 @@
 
         <section data-aos="fade-right">
           <div class="flex flex-wrap items-center mt-32" >
-              <div class="w-full md:w-5/12 px-4 mr-auto ml-auto">
+              <div class="w-full md:w-5/12 px-4 mr-auto ml-auto mb-3">
                 <div
                   class="text-gray-100 p-3 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-teal-800"
                 >
@@ -130,7 +132,7 @@
         
       
                 <a
-                class=" font-bold  mr-4 px-3 py-2 whitespace-no-wrap capitalize bg-white border border-gray-600 rounded-lg text-gray-500"
+                class=" font-bold  mr-4 px-3 py-2  whitespace-no-wrap capitalize bg-white border border-gray-600 rounded-lg text-gray-500"
                  href="{{URL::to('/register')}}"
                 >
                 Sign Up Today!
@@ -138,7 +140,7 @@
               </div>
         
         
-              <div class="w-full md:w-4/12 px-4 mr-auto ml-auto">
+              <div class="w-full md:w-4/12 px-4 mr-auto ml-auto ">
                 <div
                   class="relative flex flex-col min-w-0 break-words  w-full mb-6 shadow-lg rounded-lg bg-teal-800"
                 >
@@ -257,7 +259,7 @@
                     </div>
         
                     <div class="flex flex-col mb-3">
-                        <h5 class="text-gray-700"> <i class="fas fa-phone"></i> 0548480707</h5>
+                        <h5 class="text-gray-700"> <i class="fas fa-phone"></i> +233 548480707 / +233 247279090 </h5>
                     </div>
                     <div class="flex flex-col">
                         <h5 class="text-gray-700"> <i class="fa fa-envelope"></i> twinelink@gmail.com</h5>

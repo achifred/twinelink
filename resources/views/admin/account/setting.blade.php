@@ -1,15 +1,12 @@
 @extends('layouts.dashboard')
 
 @section('main')
-    <div class="container relative mx-auto" id="linkpage">
+    <div class="container relative mx-auto" id="settingpage">
         
         <div class=" block lg:flex ">
             <div class="w-full lg:w-6/12 ml-auto mr-auto">
-                <div class=" block lg:flex lg:justify-center mb-3 mx-auto">
-                    <span class="text-gray-900 mr-2">My TwineLink:</span>
-                <a href="{{URL::to('/'.auth()->user()->username)}}" class="text-gray-500" target="blank"><u>{{ url('') }}/{{auth()->user()->username}}</u></a>
-                </div>
-                <h3 class="text-gray-800 font-bold text-3xl leading-relaxed text-justify">Themes</h3>
+               
+                <h3 class="text-gray-800 font-bold text-3xl leading-relaxed text-center">Choose A Theme</h3>
                 
                 <div class="block lg:flex container mx-auto flex-wrap  ">
                    
@@ -33,20 +30,20 @@
             <div class="w-full lg:w-6/12 ml-auto mr-auto" id="linkitems">
                
                 <div class="flex justify-center">
-                    <div class="bg-black  w-full lg:w-6/12 rounded-lg pt-4 " style="min-height: 100vh">
+                    <div class="bg-gray-900  w-full lg:w-6/12 rounded-lg pt-4 " style="min-height: 100vh">
                         <div class=" mx-auto  w-5/6  rounded-lg   " style="min-height: 100vh" :style="{background:bg}">
                             <div class="relative flex flex-col justify-center">
-                                <div class="mx-auto">
-                                    <img class="h-12 w-12 rounded-full align-middle " src="{{auth()->user()->picture==NULL?URL::asset('img/user.png'):auth()->user()->picture}}" loading="lazy" alt="">
+                                <div class="mx-auto pt-5">
+                                    <img class="h-12 w-12 rounded-full align-middle " src="{{auth()->user()->picture==NULL?URL::asset('img/user.png'):auth()->user()->picture}}"  alt="">
                                 </div>
                             <small class="text-center text-gray-500"><small>@</small>{{auth()->user()->username}}</small>
                               </div>
     
                               <div class="flex flex-col text-center pt-10 ">
                                 
-                                   <div v-for="item in links" @key="item.id">
-                                   <a :href="item.link" class="  px-4 py-2 mb-5 capitaliz rounded-md border-b-4 border-green-600" type="button" :style="{backgroundColor:textColors, color:bg}">@{{item.name}}</a>
-                                   </div>
+                                <div v-for="item in links" @key="item.id">
+                                    <a :href="item.link" class=" px-4 py-2 mb-5 capitalize rounded-md border-b-4 border-green-600 " type="button"  :style="{backgroundColor:textColors, color:bg}">@{{item.name}}</a>
+                                    </div>
                                     
                               </div>
     
@@ -62,12 +59,13 @@
 @section('script')
     <script>
         new Vue({
-            el:'#linkpage',
+            el:'#settingpage',
             data(){
                 return{
                     name:'',
                     link:'',
                     links:[],
+                    
                     themes:[],
                     isLoading:false,
                     isAdding:false,
@@ -96,7 +94,7 @@
                         axios.defaults.headers.common['Authorization']=`Bearer ${this.token}`
                         )
                         //console.log(res.data.data)
-                        this.links = await res.data.data
+                        this.links = await res.data.data.user_links
                     } catch (error) {
                         this.isLoading=false
                         //console.log(error)

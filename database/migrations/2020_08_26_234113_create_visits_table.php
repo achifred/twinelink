@@ -17,7 +17,8 @@ class CreateVisitsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('link_id');
             $table->text('user_agent')->nullable();
-            $table->timestamps();
+            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP'));
         });
     }
 

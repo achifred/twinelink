@@ -10,7 +10,7 @@
 
             <div class="w-full  ml-auto mr-auto">
                 <div class="relative flex flex-col justify-center">
-                    <div class="mx-auto">
+                    <div class="mx-auto mt-5">
                         <img class="h-20 w-20 rounded-full align-middle " src="{{$picture==NULL?URL::asset('img/user.png'):$picture}}"  alt="">
                     </div>
                      <small class="text-center text-gray-500"><small>@</small>{{$username}}</small>
@@ -22,7 +22,7 @@
                         
                     
                 <a href="{{$item->link}}" @click="addVisit({{$item->id}})"  class=" w-5/6 lg:w-3/12  px-4 py-2 mb-5 hover:shadow-xl  capitalize rounded-md border-b-4 border-green-600 " type="button" 
-                    style=" background-color:{{$text_color}};color:{{$background_color}}; " target="blank">
+                    style=" background-color:{{$text_color}};color:{{$background_color}};" target="blank">
                    
                     {{$item->name}} 
                 </a>

@@ -56,6 +56,12 @@ class User extends Authenticatable
         
     }
 
+    public function linkimpression(){
+        
+        return $this->hasMany(LinkImpression::class);
+        
+    }
+
     public function getRouteKeyName(){
         return 'username';
     }

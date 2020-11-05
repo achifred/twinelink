@@ -28,9 +28,15 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('/themes','ColorController@index');
     Route::put('/themes/{id}/{user_id}','ColorController@changeTheme');
    
-
     
+    Route::get('/link/visit/stats/{link}/{user_id}','VisitController@linkStatistics');
+    Route::get('/link/stats/{user_id}','LinkImpressionController@pageStats');
 });
+
+
+
+
+
 Route::put('/acount/picture/{user_id}','UserController@updatePicture');
 Route::post('/resetmail','UserController@resetMail');
 Route::post('/visit/{link_id}', 'VisitController@store');

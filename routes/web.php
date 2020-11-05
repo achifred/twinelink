@@ -51,6 +51,8 @@ Route::group(['middleware'=>'auth','prefix'=>'admin' ], function () {
     Route::post('/password/{id}','UserController@changePassword');
     Route::post('/acount/picture/{user_id}','UserController@updatePicture');
     Route::get('/account/delete/{user_id}','UserController@deleteAccount');
+    Route::get('/link/stats/{link_id}','VisitController@stats');
+    Route::get('/stats','LinkImpressionController@stats');
 });
 
 Route::group(['middleware'=>'isadmin','prefix' => 'dashboard'], function () {

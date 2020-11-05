@@ -34,9 +34,9 @@
             </div>
            
             <div class="w-full lg:w-4/12 px-4 lg:order-1">
-                <div class="flex justify-center py-4 lg:pt-4 pt-8">
+                <div class="flex justify-center py-4 lg:pt-4 pt-4">
                  
-                  <div class="mr-4 p-3 text-center">
+                  <div class="mr-4  text-center">
                     
                     <button @click.prevent="togglePassword" class=" active:bg-pink-600 uppercase text-gray-600 font-bold hover:shadow-md  text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1" type="button">
                       @{{isPassword?"Close":"Reset Password"}}
@@ -48,8 +48,8 @@
             </div>
 
             <div class="w-full lg:w-4/12 px-4 lg:order-3">
-              <div class="flex justify-center py-4 lg:pt-4 pt-8">
-                <div class="mr-4 p-3 text-center">
+              <div class="flex justify-center py-4 lg:pt-4 pt-4">
+                <div class="mr-4  text-center">
                   
                   <button @click.prevent="togglePicture" class=" active:bg-pink-600 uppercase text-gray-600 font-bold hover:shadow-md  text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1" type="button">
                     @{{isChangePicture?"Close":"Change Picture"}}
@@ -88,7 +88,7 @@
                 </div>
                 
             </form>
-            <form v-else class="bg-white rounded  px-8 pt-6 pb-8 mb-4 mt-3">
+            <form v-else class="bg-white rounded  px-8 pt-3 pb-8 mb-4 mt-1">
                         
                 
                     <div class="flex items-center border-b border-green-500 py-2 mb-4">
@@ -118,6 +118,9 @@
             <a href="{{URL::to('/admin/settings')}}" class="bg-gray-700 active:bg-pink-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1" type="button">
               Settings
           </a>
+          <a href="{{URL::to('/admin/stats')}}" class="bg-gray-700 active:bg-pink-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1" type="button">
+            Stats
+        </a>
             </div>
             <h1 class="text-center font-bold text-xl text-gray-900 mb-5">Danger Zone</h1>
             <a href="{{URL::to('/admin/account/delete/'.auth()->user()->id)}}" class="bg-red-700 active:bg-pink-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1" type="button">

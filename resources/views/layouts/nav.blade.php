@@ -30,6 +30,23 @@
           <ul class="flex flex-col lg:flex-row list-none lg:ml-auto">
             <!-- testing -->
             
+            
+            <li class="flex items-center">
+              <a
+              class="lg:hidden  lg:hover:text-gray-300 text-gray-600 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
+                href="{{URL::to('/admin')}}"
+                >
+                <i class="fa fa-link fa-2x mr-2"></i>  <span>Links</span>
+                </a>
+            </li>
+            <li class="flex items-center">
+              <a
+              class="lg:hidden  lg:hover:text-gray-300 text-gray-600 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
+                href="{{URL::to('/admin/account')}}"
+                >
+                <i class="fa fa-user fa-2x mr-2"></i>  <span>Account</span>
+                </a>
+            </li>
             <li class="flex items-center">
               <a
                 class="text-gray-600 hover:text-gray-800  px-3 py-4 lg:py-2 flex items-center text-xs capitalize font-bold"
@@ -38,16 +55,6 @@
                 <i class="fa fa-cog fa-2x mr-2"></i>  <span >Settings</span>
                 </a>
             </li>
-
-            <li class="flex items-center">
-              <a
-              class="lg:hidden  lg:hover:text-gray-300 text-gray-600 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
-                href="{{URL::to('/admin/account')}}"
-                >
-                <i class="fa fa-user fa-2x mr-2"></i>  <span>Accouunt</span>
-                </a>
-            </li>
-
             
             <li class="flex items-center">
             <a href="{{URL::to('/admin/logout')}}"

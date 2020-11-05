@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Link;
 use Auth;
 use Validator;
+use App\LinkImpression;
 
 class LinkController extends Controller
 {
@@ -63,7 +64,8 @@ class LinkController extends Controller
 
     }
     public function userLinks($user_id){
-        $data = Link::where('user_id',$user_id)->withCount('visits')->get();
+        $data['user_links'] = Link::where('user_id',$user_id)->withCount('visits')->get();
+        $data['link_impression'] = LinkImpression::where('user_id',$user_id)->sum('impression_count');
         return response()->json(['status'=>'success','code'=>200,'data'=>$data]);
     }
     public function destroy($link){
@@ -71,4 +73,7 @@ class LinkController extends Controller
        return response()->json(['status'=>'success','code'=>200,'data'=>'link deleted']);
         
     }
+
+
+   
 }

@@ -5,9 +5,14 @@
         
         <div class=" block lg:flex ">
             <div class="w-full lg:w-6/12 ml-auto mr-auto">
+                
                 <div class=" block lg:flex lg:justify-center mb-3 mx-auto">
                     <span class="text-gray-900 mr-2">My TwineLink:</span>
                 <a href="{{URL::to('/'.auth()->user()->username)}}" class="text-gray-500" target="blank"><u>{{ url('') }}/{{auth()->user()->username}}</u></a>
+                </div>
+                <div class=" block lg:flex lg:justify-around mb-3 mx-auto">
+                    <h3 class="bg-green-600 hover:bg-orange-600 text-white font-bold py-2 px-4 mb-2 rounded focus:outline-none focus:shadow-outline">Page Impression: <span >@{{link_impression}}</span></h3>
+                     <a href="{{URL::to('/admin/stats')}}" class="bg-green-600 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"> <i class="fa fa-chart-bar"></i> View Stats</a>
                 </div>
                 <div class=" w-full flex justify-center">
                     <form v-if="isEdit" class="bg-white rounded  px-8 pt-6 pb-8 mb-4 mt-3">
@@ -91,9 +96,10 @@
                            
                           
 
-                           <div class="flex justify-center ">
-                           <button  class="text-green-600 mr-3 mb-6 mt-6"><i class="fa fa-eye"></i>@{{item.visits_count}}</button>
-                            <button @click.prevent="deleteLink(item.id)" class="text-red-600 mr-3 mb-6 mt-6"><i class="fa fa-trash"></i></button>
+                           <div class="flex justify-around flex-wrap ">
+                           <button  class="text-green-600  mb-6 mt-6"><i class="fa fa-eye"></i>@{{item.visits_count}}</button>
+                           <a :href="'/admin/link/stats/'+item.id" class="text-gray-600  mb-6 mt-6"><i class="fa fa-chart-line"></i></a>
+                            <button @click.prevent="deleteLink(item.id)" class="text-red-600  mb-6 mt-6"><i class="fa fa-trash"></i></button>
                             <button @click.prevent="showEdit(item.id)" class="text-blue-600 mb-6 mt-6"><i class="fa fa-edit"></i></button>
                            </div>
                         </div>
@@ -109,8 +115,8 @@
                     <div class="bg-black  w-full lg:w-6/12 rounded-lg pt-4 " style="min-height: 100vh">
                         <div class=" mx-auto  w-5/6  rounded-lg   "  style="background:{{auth()->user()->color->background_color}};min-height: 100vh">
                             <div class="relative flex flex-col justify-center">
-                                <div class="mx-auto">
-                                    <img class="h-12 w-12 rounded-full align-middle " src="{{auth()->user()->picture==NULL?URL::asset('img/user.png'):auth()->user()->picture}}" loading="lazy" alt="">
+                                <div class="mx-auto pt-5">
+                                    <img class="h-12 w-12 rounded-full align-middle " src="{{auth()->user()->picture==NULL?URL::asset('img/user.png'):auth()->user()->picture}}"  alt="">
                                 </div>
                             <small class="text-center text-gray-500"><small>@</small>{{auth()->user()->username}}</small>
                               </div>
@@ -118,7 +124,7 @@
                               <div class="flex flex-col text-center pt-10 ">
                                 
                                    <div v-for="item in links" @key="item.id">
-                                   <a :href="item.link" class=" px-4 py-2 mb-5 capitalize rounded-md border-b-4 border-green-600 " type="button"  style=" background-color:{{auth()->user()->color->text_color}};color:{{auth()->user()->color->background_color}}; ">@{{item.name}}</a>
+                                   <a :href="item.link" class=" px-4 py-2 mb-5 capitalize rounded-md border-b-4 border-green-600 " type="button"  style=" background-color:{{auth()->user()->color->text_color}};color:{{auth()->user()->color->background_color}}; " target="blank">@{{item.name}}</a>
                                    </div>
                                     
                               </div>
@@ -142,6 +148,7 @@
                     name:'',
                     link:'',
                     links:[],
+                    link_impression:'',
                     isLoading:false,
                     isAdding:false,
                     isEdit:false,
@@ -167,7 +174,9 @@
                         axios.defaults.headers.common['Authorization']=`Bearer ${this.token}`
                         )
                         //console.log(res.data.data)
-                        this.links = await res.data.data
+                        let data= await res.data.data
+                        this.links = data.user_links
+                        this.link_impression = data.link_impression
                     } catch (error) {
                         this.isLoading=false
                         //console.log(error)

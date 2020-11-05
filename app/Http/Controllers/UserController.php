@@ -11,10 +11,10 @@ use Hash;
 use Session;
 use URL;
 use Image;
-
 use App\Color;
-
 use App\Events\PasswordResetEvent;
+use App\Events\LinkViewEvent;
+
 class UserController extends Controller
 {
     public function addImage($folderName, $image, $fileUrl){
@@ -91,6 +91,7 @@ public function register(Request $request){
         $data['text_color'] = $user->color->text_color;
         $data['background_color']= $user->color->background_color;
         $data['picture'] = $user->picture;
+        event(new LinkViewEvent($user->id));
         return view('admin.links.index',$data);
     }
 

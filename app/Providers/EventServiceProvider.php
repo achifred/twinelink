@@ -10,6 +10,8 @@ use App\Events\PasswordResetEvent;
 use App\Listeners\PasswordResetEventListener;
 use App\Events\EnqueryEvent;
 use App\Listeners\EnqueryEventListener;
+use App\Events\LinkViewEvent;
+use App\Listeners\LinkViewEventListener;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -24,6 +26,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         EnqueryEvent::class=>[
             EnqueryEventListener::class,
+        ],
+        LinkViewEvent::class=>[
+            LinkViewEventListener::class,
         ],
     ];
 
