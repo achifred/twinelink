@@ -154,8 +154,8 @@ public function register(Request $request){
             return $res?redirect()->back()->with('msg','picture updated'):redirect()->back()->withErrors(['errors'=>'something went wrong']);
 
         } catch (\Throwable $th) {
-            //throw $th;
-            return redirect()->back()->withErrors(['errors'=>'something went wrong. file too large']);
+            throw $th;
+            //return redirect()->back()->withErrors(['errors'=>'something went wrong. file too large']);
         }
     }
     public function deleteAccount($user_id){ 
