@@ -5,29 +5,37 @@
 
 @section('content')
 
-<div class="contaniner mx-auto  h-screen" id="client" style="background:{{$background_color}}">
+
+<div class="contaniner mx-auto  h-auto" id="client" style="background:{{$background_color}}">
         <div class="block lg:flex flex-wrap ">
 
-            <div class="w-full  ml-auto mr-auto">
+            <div class="w-full border-l-4 border-green-600 shadow-2xl h-screen lg:mt-5  rounded-lg  ml-auto mr-auto lg:w-3/12" >
                 <div class="relative flex flex-col justify-center">
-                    <div class="mx-auto mt-5">
-                        <img class="h-20 w-20 rounded-full align-middle " src="{{$picture==NULL?URL::asset('img/user.png'):$picture}}"  alt="">
+                    
+                    <div class=" w-full h-32  bg-center bg-cover bg-no-repeat" style='background-image: url("{{$banner==NULL?URL::asset('img/back2.jpg'):$banner}}");'>
+                        <div class=" flex justify-center text-center ">
+                            <img class="h-20 w-20  rounded-full align-middle m-20 ml-20 lg:ml-20" src="{{$picture==NULL?URL::asset('img/user.png'):$picture}}"  alt="">
+                        </div>
                     </div>
-                     <small class="text-center text-gray-500"><small>@</small>{{$username}}</small>
+                     <small class="text-center mt-12 text-gray-500"><small>@</small>{{$username}}</small>
                 </div>
-                <div class="flex flex-col text-center pt-10 w-full">
-                @foreach ($links as $item)
-                <div class="" >
-                    
+                <div class="flex flex-col text-center pt-10 ">
+                <div class="container mx-auto ">
+                    @foreach ($links as $item)
+                <a href="{{$item->link}}">
+                    <div class=" w-10/12  container mx-auto  px-4 py-2 border-b-4 border-green-600 rounded  mb-4 "  style=" background-color:{{$text_color}};color:{{$background_color}};">
+                        <span class="text-xl inline-block mr-2 align-middle">
+                        <img src="{{$item->icon->icon_path}}" alt="">
+                        </span>
                         
-                    
-                <a href="{{$item->link}}" @click="addVisit({{$item->id}})"  class=" w-5/6 lg:w-3/12  px-4 py-2 mb-5 hover:shadow-xl  capitalize rounded-md border-b-4 border-green-600 " type="button" 
-                    style=" background-color:{{$text_color}};color:{{$background_color}};" target="blank">
-                   
-                    {{$item->name}} 
+                            <a href="{{$item->link}}" class=" align-middle mr-3"   target="blank"  @click="addVisit({{$item->id}})"> {{$item->name}} </a>
+                        
+                        
+                      </div>
                 </a>
-                    </div>
+               
                 @endforeach
+                </div>
                     
                </div>
             </div>

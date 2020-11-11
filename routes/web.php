@@ -53,6 +53,7 @@ Route::group(['middleware'=>'auth','prefix'=>'admin' ], function () {
     Route::get('/account/delete/{user_id}','UserController@deleteAccount');
     Route::get('/link/stats/{link_id}','VisitController@stats');
     Route::get('/stats','LinkImpressionController@stats');
+    Route::get('/url','MedialurlController@create');
 });
 
 Route::group(['middleware'=>'isadmin','prefix' => 'dashboard'], function () {
@@ -63,6 +64,11 @@ Route::group(['middleware'=>'isadmin','prefix' => 'dashboard'], function () {
     Route::get('/themes/create','ColorController@create');
     Route::get('/themes/{id}','ColorController@edit');
     Route::post('/themes/update/{id}','ColorController@update');
+    Route::get('/icons','IconController@index');
+    Route::post('/icons', 'IconController@store');
+    Route::get('/icons/create','IconController@create');
+    Route::get('/icons/{id}','IconController@edit');
+    Route::post('/icons/{id}','IconController@update');
 
 });
 Route::post('/visit/{link}','VisitController@store');

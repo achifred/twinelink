@@ -32,10 +32,14 @@
             
             
             <li class="flex items-center">
-                <a href="{{URL::to('/dashboard/linkers')}}" class="lg:hidden text-cool-gray-500 text-normal hover:text-pink-600"> <i class="fa fa-inbox px-3"></i> Linkers</a>
+                <a href="{{URL::to('/dashboard/users')}}" class="lg:hidden text-cool-gray-500 text-normal hover:text-pink-600"> <i class="fa fa-users px-3"></i> Linkers</a>
               </li>
               <li class="flex items-center">
                 <a href="{{URL::to('/dashboard/themes')}}" class="lg:hidden text-cool-gray-500 text-normal hover:text-pink-600"> <i class="fa fa-inbox px-3"></i> Themes</a>
+              </li>
+
+              <li class="flex items-center">
+                <a href="{{URL::to('/dashboard/icons')}}" class="lg:hidden text-cool-gray-500 text-normal hover:text-pink-600"> <i class="fa fa-icons px-3"></i> Icons</a>
               </li>
 
             

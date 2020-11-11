@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->unsignedBigInteger('color_id');
             $table->string('picture')->nullable();
+            $table->string('banner')->nullable();
             $table->unsignedBigInteger('link_view')->default(0);
         
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));

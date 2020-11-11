@@ -25,6 +25,7 @@
     },
     "dependencies": {
         "chart.js": "^2.9.4",
-        "tailwindcss": "^1.7.5"
+        "tailwindcss": "^1.7.5",
+        "vue-select": "^3.10.8"
     }
 }

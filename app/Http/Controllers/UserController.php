@@ -31,6 +31,20 @@ class UserController extends Controller
 
     }
 
+    public function addBanner($folderName, $image, $fileUrl){
+        
+        
+        $path = public_path($folderName);
+        
+        $filename = $image->getClientOriginalName();
+        Image::make($image)->resize(150,150)->save($path. $filename);
+        //$image->move($path, $filename);
+        $storagePath = $fileUrl.$folderName.$filename;
+
+        return $storagePath;
+
+    }
+
     public function create(){
         if(Auth::user()){
             return redirect()->back();
@@ -91,6 +105,7 @@ public function register(Request $request){
         $data['text_color'] = $user->color->text_color;
         $data['background_color']= $user->color->background_color;
         $data['picture'] = $user->picture;
+        $data['banner']= $user->banner;
         event(new LinkViewEvent($user->id));
         return view('admin.links.index',$data);
     }
@@ -156,6 +171,31 @@ public function register(Request $request){
         } catch (\Throwable $th) {
             //throw $th;
             return redirect()->back()->withErrors(['errors'=>'something went wrong. file too large']);
+        }
+    }
+
+    public function updateBanner(Request $request, $user_id){
+        try {
+            // if(!$request->hasFile('banner')){
+            //     return response()->json(['status'=>'fail','code'=>400, 'error'=>'no image selected']);
+            // }
+            $rules =['banner'=>'image|mimes:jpeg,png,jpg,gif,svg|max:5048'];
+            $data = $request->only(['banner']);
+            $is_valid = Validator::make($data, $rules);
+            if($is_valid->fails()){
+                return response()->json(['status'=>'fail','code'=>400, 'error'=>$is_valid->messages()]);
+            }
+            $picture  = $request->file('banner');
+            
+            $path = $this->addBanner('uploads/banner/',$picture,env('APP_URL'));
+
+            $res = User::where('id',$user_id)->update(['banner'=>$path]);
+            $banner = User::where('id',$user_id)->pluck('banner');
+            return $res?response()->json(['status'=>'success','code'=>200,'data'=>$banner[0]]):response()->json(['status'=>'fail','code'=>400, 'error'=>'an error occurred. try again']);
+
+        } catch (\Throwable $th) {
+            //throw $th;
+            return response()->json(['status'=>'fail','code'=>400, 'error'=>'an error occurred. try again']);
         }
     }
     public function deleteAccount($user_id){ 

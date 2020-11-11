@@ -31,13 +31,24 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     
     Route::get('/link/visit/stats/{link}/{user_id}','VisitController@linkStatistics');
     Route::get('/link/stats/{user_id}','LinkImpressionController@pageStats');
+    Route::get('/icons/social','IconController@socialIcons');
+    Route::post('/user/update/banner/{user_id}','UserController@updateBanner');
 });
-
-
-
+Route::post('/media/url','MedialurlController@addUrl');
+Route::post('/media/url/update/{url_id}','MedialurlController@updateUrl');
+Route::delete('/media/url/delete/{url_id}','MedialurlController@destroy');
+Route::get('/media/user/urls/{user_id}','MedialurlController@allUrls');
+Route::get('/media/urls/{user_id}','MedialurlController@userUrls');
+Route::get('/media/links/{medialtittle_id}','MedialurlController@Urls');
+Route::post('/media/tittle','MedialTittleController@addTittle');
+Route::post('/media/tittle/update/{id}','MedialTittleController@updateTittle');
+Route::delete('/media/tittle/delete/{id}', 'MedialTittleController@deleteTittle');
 
 
 Route::put('/acount/picture/{user_id}','UserController@updatePicture');
 Route::post('/resetmail','UserController@resetMail');
 Route::post('/visit/{link_id}', 'VisitController@store');
+
+
+
 

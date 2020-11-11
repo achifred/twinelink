@@ -8,6 +8,9 @@
             <div class="mb-4">
                 <a href="{{URL::to('/dashboard/themes')}}" class="text-gray-500 text-normal hover:text-orange-600"> <i class="fa fa-palette px-3"></i> Themes</a>
              </div>
+             <div class="mb-4">
+                <a href="{{URL::to('/dashboard/icons')}}" class="text-gray-500 text-normal hover:text-orange-600"> <i class="fa fa-icons px-3"></i> Icons</a>
+             </div>
         <div class="absolute  flex flex-col justify-center" style="bottom: 1rem">
         <div class="mx-auto">
             <a href="{{URL::to('/dashboard/account/')}}">Profile</a>
