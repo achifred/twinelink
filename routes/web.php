@@ -54,6 +54,13 @@ Route::group(['middleware'=>'auth','prefix'=>'admin' ], function () {
     Route::get('/link/stats/{link_id}','VisitController@stats');
     Route::get('/stats','LinkImpressionController@stats');
     Route::get('/url','MedialurlController@create');
+    Route::post('/url/{url_id}','MedialurlController@updateUrl');
+    Route::get('/url/edit/{id}','MedialurlController@edit');
+    Route::get('/url/delete/{id}','MedialurlController@destroy');
+    Route::get('/url/tittle/{id}','MedialTittleController@edit');
+    Route::post('/url/tittle/{id}','MedialTittleController@updateTittle');
+    Route::get('/url/tittle/delete/{id}','MedialTittleController@deleteTittle');
+    Route::get('/url/stats/{url_id}','MedialurlVisitController@stats');
 });
 
 Route::group(['middleware'=>'isadmin','prefix' => 'dashboard'], function () {
@@ -72,6 +79,7 @@ Route::group(['middleware'=>'isadmin','prefix' => 'dashboard'], function () {
 
 });
 Route::post('/visit/{link}','VisitController@store');
+Route::get('/{user}/{tittle}','MedialurlController@Urls');
 Route::get('/{user}','UserController@show');
 
 

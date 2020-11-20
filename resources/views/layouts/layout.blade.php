@@ -6,7 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title> @yield('title') </title>
     <link href="{{ URL::asset('css/main.css') }}" rel="stylesheet">
-        
+    
+    <link rel="icon" href="{{ URL::asset('icon.ico') }}" type="image/x-icon">
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
     <script src="https://kit.fontawesome.com/353c6e4283.js" crossorigin="anonymous"></script>

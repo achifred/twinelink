@@ -69,17 +69,27 @@ class MedialTittleController extends Controller
 
     }
 
+    public function edit($id){
+        try {
+            $data['tittle'] = MedialTittle::where('id',$id)->first();
+            return view('admin.links.edit', $data);
+        } catch (\Throwable $th) {
+            //throw $th;
+            return redirect()->back()->withErrors(['errors'=>'opps!! something went wrong']);
+        }
+    }
     public function updateTittle(Request $request, $id){
         try {
             $rules =[
-                'user_id'=>'required',
+                
             'tittle'=>'required',
             'cover_art'=>'image|mimes:jpeg,png,jpg,gif|max:5048',
         ];
-            $request_body = $request->only(['user_id','tittle','cover_art','preview']);
+            $request_body = $request->only(['tittle','cover_art','preview']);
             $is_valid = Validator::make($request_body,$rules);
             if($is_valid->fails()){
-                return response()->json(['status'=>'fail','code'=>400,'error'=>$is_valid->messages()]);
+                return redirect()->back()->withErrors($is_valid)->withInput();
+                //return response()->json(['status'=>'fail','code'=>400,'error'=>$is_valid->messages()]);
             }
             if($request->hasFile('cover_art')){
                 $cover_art = $request->file('cover_art');
@@ -94,14 +104,17 @@ class MedialTittleController extends Controller
             }
             $res = MedialTittle::where('id',$id)->update($request_body);
             if(!$res){
-                return response()->json(['status'=>'fail','code'=>400,'error'=>'item not updated']);
+                return redirect()->back()->withErrors(['errors'=>'item not updated']);
+                //return response()->json(['status'=>'fail','code'=>400,'error'=>'item not updated']);
             }
             $data= MedialTittle::where('id',$id)->get();
-            return response()->json(['status'=>'success','code'=>200,'data'=>$data]);
+            return redirect('admin/url');
+            //return response()->json(['status'=>'success','code'=>200,'data'=>$data]);
 
         } catch (\Throwable $th) {
             //throw $th;
-            return response()->json(['status'=>'fail','code'=>400,'error'=>'something went wrong']);
+            return redirect()->back()->withErrors(['errors'=>'opps!! something went wrong']);
+            //return response()->json(['status'=>'fail','code'=>400,'error'=>'something went wrong']);
         }
 
     }
@@ -110,10 +123,12 @@ class MedialTittleController extends Controller
         try {
              MedialTittle::destroy($id);
             Medialurl::where('medialtittle_id',$id)->delete();
-       return response()->json(['status'=>'success','code'=>200,'data'=>'link deleted']);
+            return redirect('admin/url');
+       //return response()->json(['status'=>'success','code'=>200,'data'=>'link deleted']);
         } catch (\Throwable $th) {
             //throw $th;
-            return response()->json(['status'=>'fail','code'=>400,'error'=>'something went wrong']);
+            return redirect()->back()->withErrors(['errors'=>'opps!! something went wrong']);
+            //return response()->json(['status'=>'fail','code'=>400,'error'=>'something went wrong']);
         }
     }
 

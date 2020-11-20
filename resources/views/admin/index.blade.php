@@ -20,8 +20,8 @@
                 </div>
                 <div class=" block lg:flex lg:justify-center mb-3 mx-auto">
 
-                    <a href="{{ URL::to('/admin/url') }}" class="text-gray-500 italic" target="blank">
-                        Have a song to promote? <u class="text-green-600 font-extrabold"> Create a smart link</u></a>
+                    <a href="{{ URL::to('/admin/url') }}" class="text-gray-500 italic text-sm" >
+                        Have a song, podcast, video to promote? <u class="text-green-600 font-extrabold"> Create a smart link</u></a>
                 </div>
                 <div class=" w-full flex justify-center">
                     <form v-if="isEdit" class="bg-white rounded  px-8 pt-6 pb-8 mb-4 mt-3">
@@ -49,24 +49,29 @@
                                 :value="editLink.name" required>
                         </div>
 
+                       <div class="block lg:flex justify-around">
+                        
+                        <div class="flex justify-around border-b border-green-500 py-2 mb-4 ">
+                            <h5>Icon</h5>
+                            <v-select :options="icons" label="icon_name" v-model="icon_id"
+                                class=" bg-transparent border-none w-full text-gray-500 mr-3 py-1 px-2 leading-tight focus:outline-none">
+                                <template slot="option" slot-scope="option">
+                                    <div class="flex justify-around">
+                                        <img :src="option.icon_path" />
+                                        <h5 class="text-gray-600"> @{{ option . icon_name }}</h5>
+                                    </div>
+                                </template>
+                            </v-select>
+
+
+                        </div>
                         <div class=" border-b border-green-500 py-2 mb-6">
                             <label class="block text-gray-500 text-sm font-bold mb-2" for="password"> Link</label>
                             <input type="text" name="link" id="link"
                                 class="appearance-none bg-transparent border-none w-full text-gray-500 mr-3 py-1 px-2 leading-tight focus:outline-none"
                                 :value="editLink.link" required>
                         </div>
-                        <div class="border-b border-green-500 py-2 mb-4 ">
-
-                            <v-select :options="icons" label="icon_name" v-model="icon_id"
-                                class=" bg-transparent border-none w-full text-gray-500 mr-3 py-1 px-2 leading-tight focus:outline-none">
-                                <template slot="option" slot-scope="option">
-                                    <img :src="option.icon_path" />
-                                    @{{ option . icon_name }}
-                                </template>
-                            </v-select>
-
-
-                        </div>
+                       </div>
                         <div class=" flex flex-wrap text-center ">
                             <button @click.prevent="updateLink(editLink.id)"
                                 class="bg-green-600 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
@@ -77,7 +82,7 @@
 
                     </form>
                     <form v-else class="bg-white rounded  px-8 pt-6 pb-8 mb-4 mt-3">
-                        <h3 class="text-center">Add A Link</h3>
+                        <h3 class="text-center font-extrabold text-gray-600 text-2xl">Add your social media presence</h3>
                         <small v-if="isAdding">adding...</small>
                         <div v-if="isError" class="text-white px-6 py-4 border-0 rounded relative mb-4 bg-red-700">
                             <span class="text-xl inline-block mr-5 align-middle">
@@ -97,36 +102,37 @@
 
                             <input type="text" name="name" id="name" v-model="name"
                                 class="appearance-none bg-transparent border-none w-full text-gray-500 mr-3 py-1 px-2 leading-tight focus:outline-none"
-                                placeholder="title" required>
+                                placeholder="Tittle eg twitter, instagram etc" required>
                         </div>
 
-                        <div class="border-b border-green-500 py-2 mb-4 ">
+                        <div class="block lg:flex justify-around">
+                            
+    
+                            <div class=" flex justify-around border-b border-green-500 py-2 mb-4 ">
+                                <h5 class="text-gray-600" >Icon</h5>
+                                <v-select :options="icons" label="icon_name" v-model="icon_id"
+                                    class=" bg-transparent border-none w-full text-gray-500 mr-3 py-1 px-2 leading-tight focus:outline-none">
+                                    <template slot="option" slot-scope="option">
+                                        <div class="flex justify-around">
+                                        <img :src="option.icon_path" />
+                                        @{{ option . icon_name }}
+                                        </div>
+                                    </template>
+                                </v-select>
+    
+    
+                            </div>
 
-                            <input type="text" name="link" id="link" v-model="link"
-                                class="appearance-none bg-transparent border-none w-full text-gray-500 mr-3 py-1 px-2 leading-tight focus:outline-none"
-                                placeholder="link" required>
+                            <div class="border-b border-green-500 py-2 mb-4 ">
+
+                                <input type="text" name="link" id="link" v-model="link"
+                                    class="appearance-none bg-transparent border-none w-full text-gray-500 mr-3 py-1 px-2 leading-tight focus:outline-none"
+                                    placeholder="link" required>
+                            </div>
+
                         </div>
 
-                        <div class="border-b border-green-500 py-2 mb-4 ">
-
-                            <v-select :options="icons" label="icon_name" v-model="icon_id"
-                                class=" bg-transparent border-none w-full text-gray-500 mr-3 py-1 px-2 leading-tight focus:outline-none">
-                                <template slot="option" slot-scope="option">
-                                    <img :src="option.icon_path" />
-                                    @{{ option . icon_name }}
-                                </template>
-                            </v-select>
-
-
-                        </div>
-
-                        <!--div class=" py-2 mb-4 ">
-                                                                        
-                                                                        <input type="file" name="thumbnail" ref="fileInput"  @change="onFileSelect"  required style="display: none">
-                                                                        <button class="bg-gray-600 hover:bg-green-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"  @click="$refs.fileInput.click()">
-                                                                            add thumbnail
-                                                                        </button>
-                                                                    </div-->
+                        
 
                         <div class=" flex flex-wrap text-center ">
                             <button @click.prevent="addLink"
@@ -138,7 +144,7 @@
 
                     </form>
                 </div>
-                <div class="block lg:flex container mx-auto flex-wrap  ">
+                <div class="block lg:flex  flex-wrap  ">
 
                     <div class="w-full lg:w-6/12 container mx-auto  px-4 py-6" v-for="item in links" @key="item.id">
                         <div
@@ -168,10 +174,10 @@
                 </div>
             </div>
 
-            <div class="w-full lg:w-6/12 ml-auto mr-auto">
-                <div class="block lg:flex flex-wrap ">
+            <div class="w-full lg:w-6/12 contaniner mx-auto ">
+                <div class="block lg:flex  ">
 
-                    <div class="w-full border-l-4 border-green-600 shadow-2xl h-screen lg:mt-5  rounded-lg  ml-auto mr-auto lg:w-8/12"
+                    <div class=" w-full border-l-4 border-green-600 shadow-2xl h-screen lg:mt-5  rounded-lg  ml-auto mr-auto lg:w-8/12"
                         style="background:{{ auth()->user()->color->background_color }}">
                         <div class="relative flex flex-col justify-center">
 
@@ -189,13 +195,13 @@
                         <div class="flex flex-col text-center pt-10 ">
                             <div class="container mx-auto ">
                                 <div v-for="item in links" @key="item.id">
-                                    <div class="px-4 py-2 border-b-4 w-10/12 mx-auto border-green-600 rounded  mb-4 "
+                                    <div class="px-4 py-2 border-b-4  mx-auto border-green-600 rounded  mb-4 "
                                         style=" background-color:{{ auth()->user()->color->text_color }};color:{{ auth()->user()->color->background_color }}; ">
                                         <span class="text-xl inline-block mr-2 align-middle">
                                             <img :src="item.icon" alt="">
                                         </span>
                                         <span class="inline-block align-middle mr-3">
-                                            <a :href="item.link" target="blank"> @{{ item . name }}</a>
+                                            <a :href="item.link" target="blank" class="capitalize"> @{{ item . name }}</a>
                                         </span>
 
                                     </div>
@@ -257,7 +263,7 @@
                         const res = await axios.get(`/api/links/${this.user_id}`,
                             axios.defaults.headers.common['Authorization'] = `Bearer ${this.token}`
                         )
-                        console.log(res.data.data)
+                        
                         let data = await res.data.data
                         this.links = data.user_links
                         this.link_impression = data.link_impression
@@ -302,7 +308,7 @@
                         const res = await axios.post(`/api/links`, formdata,
                             axios.defaults.headers.common['Authorization'] = `Bearer ${this.token}`
                         )
-                        console.log(res)
+                        
                         if (res.data.status == "success") {
                             this.isAdding = false
                             this.links.push(res.data.data)

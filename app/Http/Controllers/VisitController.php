@@ -37,7 +37,7 @@ class VisitController extends Controller
             return response()->json(['status'=>'fail','code'=>400,'error'=>'something went wrong']);
             //throw $th;
         }
-    }
+    } 
 
     
 }

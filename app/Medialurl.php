@@ -11,4 +11,14 @@ class Medialurl extends Model
     public function medialtittle(){
         return $this->belongsTo(MedialTittle::class);
     }
+    public function visit(){
+        return $this->hasMany(MedialurlVisit::class);
+    }
+
+    public function user(){
+        return $this->belongsTo(User::class);
+        
+    }
+
+    
 }

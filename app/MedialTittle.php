@@ -13,4 +13,12 @@ class MedialTittle extends Model
         return $this->hasMany(Medialurl::class);
         
     }
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
+
+    public function getRouteKeyName(){
+        return 'tittle';
+    }
 }

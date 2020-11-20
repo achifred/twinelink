@@ -66,6 +66,7 @@
               <p class="mt-2 mb-4 text-gray-600">
                 Create an account if you don't have one already. If you already have an account log in to your dashboard.
               </p>
+            <a href="{{URL::to('/login')}}" class="text-center text-teal-700 font-bold text-sm italic capitalize">create one here </a>
             </div>
           </div>
         </div>
@@ -85,7 +86,10 @@
               <p class="mt-2 mb-4 text-gray-600">
                 From your admin dashboard, add as many links to your contents as you can. 
                 A one time  twinelink will be generated for you containing all the links you've added.
+                <a href="{{URL::to('/admin')}}" class="text-center text-orange-700 font-bold italic text-sm capitalize">add one here</a>
               </p>
+
+             
             </div>
           </div>
         </div>
@@ -105,6 +109,7 @@
               <p class="mt-2 mb-4 text-gray-600">
                 Happily share the twinelink generated for you. Hurray!! you are good to go. You are now all over the internet. 
               </p>
+              <a href="{{URL::to('/admin')}}" class="text-center text-gray-700 font-bold italic text-sm capitalize">see how </a>
             </div>
           </div>
         </div>

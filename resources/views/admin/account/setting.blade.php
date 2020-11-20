@@ -36,7 +36,7 @@
                         
                         <div class="relative flex flex-col justify-center">
                             
-                            <div class=" w-full h-32  bg-center bg-cover bg-no-repeat" style="backgroundImage: url({{auth()->user()->banner==NULL?URL::asset('img/back2.jpg'):auth()->user()->banner}})">
+                            <div class=" w-full h-32  bg-center bg-cover bg-no-repeat" :style="{backgroundImage:'url(' + banner + ')'}" >
                                 <form v-if="modal" class="bg-white transition duration-150 ease-in-out">
                                     <div class=" py-2 mb-4 ">
                                
@@ -99,7 +99,8 @@
                     link:'',
                     links:[],
                     fileSelected:null,
-                    banner:"{{auth()->user()->banner}}",
+                    banner:"{{auth()->user()->banner??'https://twinelink.com/img/back2.jpg'}}",
+                    
                     modal:false,
                     themes:[],
                     isLoading:false,
@@ -191,6 +192,7 @@
                             //console.log(res)
                          if(res.data.status=="success"){
                             this.banner = res.data.data
+                            this.modal =false
                             return
                         }
                     } catch (error) {

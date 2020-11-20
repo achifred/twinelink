@@ -1,7 +1,7 @@
 <nav class="top-0 absolute z-50 w-full flex flex-wrap items-center justify-between px-2 py-3 navbar-expand-lg bg-white">
     <div class="container px-4 mx-auto flex flex-wrap items-center justify-between">
         <div class="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
-            <a class="text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-no-wrap uppercase text-gray-900"
+            <a class="text-sm font-extrabold text-gray-600 leading-relaxed inline-block mr-4 py-2 whitespace-no-wrap uppercase "
                 href="{{ URL::to('/admin') }}">
                 TwineLink
             </a>

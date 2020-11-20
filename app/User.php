@@ -62,6 +62,15 @@ class User extends Authenticatable
         
     }
 
+    public function medialtittle(){
+        return $this->hasMany(MedialTittle::class);
+    }
+
+    public function medialurl(){
+        return $this->hasMany(Medialurl::class);
+        
+    }
+
     public function getRouteKeyName(){
         return 'username';
     }
