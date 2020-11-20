@@ -195,7 +195,7 @@
                         <div class="flex flex-col text-center pt-10 ">
                             <div class="container mx-auto ">
                                 <div v-for="item in links" @key="item.id">
-                                    <div class="px-4 py-2 border-b-4  mx-auto border-green-600 rounded  mb-4 "
+                                    <div class="px-4 py-2 border-b-4 w-10/12  mx-auto border-green-600 rounded  mb-4 "
                                         style=" background-color:{{ auth()->user()->color->text_color }};color:{{ auth()->user()->color->background_color }}; ">
                                         <span class="text-xl inline-block mr-2 align-middle">
                                             <img :src="item.icon" alt="">
@@ -279,7 +279,7 @@
                         const res = await axios.get(`/api/icons/social`,
                             axios.defaults.headers.common['Authorization'] = `Bearer ${this.token}`
                         )
-                        console.log(res.data.data)
+                        
                         let data = await res.data.data
                         this.icons = data
 

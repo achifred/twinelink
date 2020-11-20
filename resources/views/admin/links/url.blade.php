@@ -6,11 +6,11 @@
 @section('content')
 
 
-    <div class="contaniner mx-auto  h-screen"  style="background:{{$background_color}}" id="url">
+    <div class="contaniner mx-auto  min-h-screen"  style="background:{{$background_color}}" id="url">
         <div class="block lg:flex flex-wrap ">
 
                
-                <div  class="w-full border-l-4 border-green-600 shadow-2xl h-auto lg:mt-5  rounded-lg mb-2 ml-auto mr-auto lg:w-3/12" style="background:{{$background_color}}" >
+                <div  class="w-full border-l-4 border-green-600 shadow-xl h-auto lg:mt-5  rounded-lg mb-2 ml-auto mr-auto lg:w-3/12" style="background:{{$background_color}}" >
                     @foreach ($links as $item)
                     <div class="relative flex flex-col justify-center">
                         
@@ -58,7 +58,24 @@
 
         </div>
 
-    <a href="{{URL::to('/')}}" class="text-gray-500 font-bold  fixed text-xl text-center left-0 right-0" style="bottom:1rem;">@TwineLink</a>
+        <div class="container mx-auto justify-center" >
+            <h3 class="text-gray-800 font-bold text-sm text-center capitalize">get in touch</h3>
+            <div class="container mx-auto flex flex-wrap justify-center" >
+            @foreach ($user_social_links as $item)
+        <a href="{{$item->link}}" target="blank"> <img class="h-5 w-5 mr-2" src="{{$item->icon->icon_path}}" alt=""> </a>
+        <a href="{{$item->link}}" target="blank"> <img class="h-5 w-5 mr-2" src="{{$item->icon->icon_path}}" alt=""> </a>
+        <a href="{{$item->link}}" target="blank"> <img class="h-5 w-5 mr-2" src="{{$item->icon->icon_path}}" alt=""> </a>
+        <a href="{{$item->link}}" target="blank"> <img class="h-5 w-5 mr-2" src="{{$item->icon->icon_path}}" alt=""> </a>
+        <a href="{{$item->link}}" target="blank"> <img class="h-5 w-5 mr-2" src="{{$item->icon->icon_path}}" alt=""> </a>
+
+            @endforeach
+            </div>
+        </div>
+
+
+   <div class="flex justify-center">
+    <a href="{{URL::to('/')}}" class="text-gray-500 font-bold   text-xl text-center ">@TwineLink</a>
+   </div>
     </div>
 @endsection
 

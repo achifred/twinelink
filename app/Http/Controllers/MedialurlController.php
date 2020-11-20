@@ -9,6 +9,7 @@ use Validator;
 use Image;
 use App\Icon;
 use App\User;
+use App\Link;
 
 class MedialurlController extends Controller
 {
@@ -91,6 +92,8 @@ class MedialurlController extends Controller
                 $item->urls = $urls;
                 return $item;
             });
+
+            $data['user_social_links']= Link::where('user_id',$user->id)->get();
             $data['links'] = $links;
             $data['username'] = $user->username;
             $data['tittle'] = $tittle->tittle;
@@ -100,8 +103,8 @@ class MedialurlController extends Controller
             return view('admin.links.url', $data);
             //return response()->json(['status'=>'success','code'=>200,'data'=>$data]);
         } catch (\Throwable $th) {
-            //throw $th;
-            return response()->json(['status'=>'fail','code'=>400,'error'=>'something went wrong']);
+            throw $th;
+            //return redirect()->back()->withErrors(['errors'=>'opps!! something went wrong']);
         }
     }
 

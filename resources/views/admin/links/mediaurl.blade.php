@@ -239,7 +239,7 @@
             mounted(){
                 this.allUrls()
                 this.allicons()
-                this.linklength = this.links.length
+                
                 
                 
             },
@@ -280,6 +280,7 @@
                         
                         let data= await res.data.data
                         this.links = data
+                        this.linklength = data.length
                         
                     } catch (error) {
                         this.isLoading=false
@@ -293,7 +294,7 @@
                         const res = await axios.get(`/api/icons/media`,
                         axios.defaults.headers.common['Authorization']=`Bearer ${this.token}`
                         )
-                        console.log(res.data.data)
+    
                         let data= await res.data.data
                         this.icons = data
                         
@@ -317,12 +318,26 @@
                     try {
                         
                         this.isAdding=true
+                        // if (this.tittle='') {
+                        //     this.isAdding=false
+                        //     this.isError =true
+                        //     this.msg ='tittle can not be empty'
+                        //     return
+                        // }
                         if(this.cover_art==null){
                             this.isAdding=false
                             this.isError =true
                             this.msg ='cover art can not be empty'
                             return
                         }
+                        if(this.urls==[]){
+                            this.isAdding=false
+                            this.isError =true
+                            this.msg ='cover art can not be empty'
+                            return
+                        }
+
+
                         
 
                         
@@ -358,65 +373,7 @@
                     }
                 },
 
-                async showEdit(id){
-                    try {
-                        this.isLoading=true
-                        
-                        const res = await axios.get(`/api/links/show/${id}`,
-                        axios.defaults.headers.common['Authorization']=`Bearer ${this.token}`
-                        )
-                        
-                        this.editLink = await res.data.data
-                        document.body.scrollTop = 0;
-                        document.documentElement.scrollTop = 0;
-                    } catch (error) {
-                        this.isLoading=false
-                        
-                        this.msg='something went wrong'
-                    }
-                    this.isEdit= true
-                },
-                async updateLink(id){
-                    try {
-                        this.isAdding =true
-                        const res  = await axios.put(`/api/links/${id}`,{
-                            link:document.getElementById('link').value,
-                            name:document.getElementById('name').value,
-                            icon_id:this.icon_id.id
-                            
-                        },
-                        axios.defaults.headers.common['Authorization']=`Bearer ${this.token}`
-                        )
-                        
-                        if(res.data.status=="success"){
-                            this.isAdding=false
-                            this.isEdit=false
-                            const index = this.links.findIndex((item)=>item.id==id)
-                            if(index == -1) return
-                            this.links.splice(index,1,res.data.data[0])
-                            return
-                        }
-                        this.isAdding =false
-                        this.isError =true
-                        this.msg=res.data.error
-                    } catch (error) {
-                        this.isAdding =false
-                        this.msg ="something went wrong"
-                    }
-                },
-
-                async deleteLink(id){
-                    try {
-                        const res = await axios.delete(`/api/links/${id}`,  
-                        axios.defaults.headers.common['Authorization']=`Bearer ${this.token}`
-                        )
-                        if(res.data.status=="success"){
-                            this.links = this.links.filter((item)=>item.id!=id)
-                        }
-                    } catch (error) {
-                        
-                    }
-                }
+              
 
             }
         })
