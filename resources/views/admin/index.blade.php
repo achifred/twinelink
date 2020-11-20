@@ -279,7 +279,7 @@
                         const res = await axios.get(`/api/icons/social`,
                             axios.defaults.headers.common['Authorization'] = `Bearer ${this.token}`
                         )
-                        //console.log(res.data.data)
+                        console.log(res.data.data)
                         let data = await res.data.data
                         this.icons = data
 
