@@ -133,12 +133,12 @@
                           
                            <div class="flex  justify-around pb-5">
                             <div class=" border-b border-green-500 py-2 mb-4">
-                                <input type="text" :value="`https://twinelink.com/${username}/${item.tittle}`" id="copy-text" class="appearance-none bg-transparent border-none w-full text-gray-500 mr-3 py-1 px-2 leading-tight focus:outline-none" readonly>
+                                <input type="text" :value="`https://twinelink.com/${username}/${item.tittle}`" :id="item.id" class="appearance-none bg-transparent border-none w-full text-gray-500 mr-3 py-1 px-2 leading-tight focus:outline-none" readonly>
                                 
                             </div>
                            
                             
-                            <button @click.prevent="copyText" class=" text-gray-600 font-bold  rounded focus:outline-none focus:shadow-outline">copy url</button>
+                            <button @click.prevent="copyText(item.id)" class=" text-gray-600 font-bold  rounded focus:outline-none focus:shadow-outline">copy url</button>
                        </div>
                            
                           
@@ -265,8 +265,8 @@
                     this.isAddUrl = !this.isAddUrl
                 },
 
-                copyText(){
-                    let text = document.getElementById('copy-text')
+                copyText(id){
+                    let text = document.getElementById(id)
                     text.select()
                     text.setSelectionRange(0, 99999)
                     document.execCommand("copy")

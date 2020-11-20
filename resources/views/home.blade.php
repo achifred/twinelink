@@ -49,7 +49,7 @@
         </div>
 
         <section>
-          <h3 class="text-center text-3xl text-gray-900 font-bold capitalize pt-8">How it works</h3>
+          <h3 class="text-center text-3xl text-gray-700 font-extrabold capitalize pt-8">How it works</h3>
       <div class="block lg:flex flex-wrap justify-center ">
 
         <div class="lg:pt-12 pt-6 w-full md:w-4/12 px-4 text-center">
@@ -62,7 +62,7 @@
               >
                 <i class="fa fa-user-circle fa-2x"></i>
               </div>
-              <h6 class="text-xl font-semibold">Create Account</h6>
+              <h6 class="text-xl text-gray-700 font-extrabold">Create Account</h6>
               <p class="mt-2 mb-4 text-gray-600">
                 Create an account if you don't have one already. If you already have an account log in to your dashboard.
               </p>
@@ -82,7 +82,7 @@
               >
                 <i class="fa fa-link fa-2x"></i>
               </div>
-              <h6 class="text-xl font-semibold">Add Links</h6>
+              <h6 class="text-xl text-gray-700 font-extrabold">Add Links</h6>
               <p class="mt-2 mb-4 text-gray-600">
                 From your admin dashboard, add as many links to your contents as you can. 
                 A one time  twinelink will be generated for you containing all the links you've added.
@@ -105,7 +105,7 @@
               >
                 <i class="fa fa-share-alt fa-2x"></i>
               </div>
-              <h6 class="text-xl font-semibold">Share Your Link</h6>
+              <h6 class="text-xl text-gray-700 font-extrabold">Share Your Link</h6>
               <p class="mt-2 mb-4 text-gray-600">
                 Happily share the twinelink generated for you. Hurray!! you are good to go. You are now all over the internet. 
               </p>
@@ -125,7 +125,7 @@
                 >
                   <i class="fas fa-handshake text-xl"></i>
                 </div>
-                <h3 class="text-3xl mb-2 font-semibold leading-normal capitalize">
+                <h3 class="text-3xl mb-2 text-gray-700 font-extrabold leading-normal capitalize">
                   to your advantage
                 </h3>
                 <p
@@ -216,7 +216,7 @@
                 >
                   <i class="fas fa-handshake text-xl"></i>
                 </div>
-                <h3 class="text-3xl mb-2 font-semibold leading-normal capitalize">
+                <h3 class="text-3xl mb-2 text-gray-700 font-extrabold leading-normal capitalize">
                   your content in one place
                 </h3>
                 <p
@@ -248,7 +248,7 @@
                     >
                       <i class="fas fa-address-book text-xl"></i>
                     </div>
-                    <h3 class="text-3xl mb-2 font-semibold leading-normal capitalize">
+                    <h3 class="text-3xl mb-2 text-gray-700 font-extrabold leading-normal capitalize">
                       Get in touch
                     </h3>
                     <p
@@ -257,7 +257,7 @@
                     We are located in Ghana, West Africa. Send us an email, give us a call, or send a brief message if you're interested in reaching us. 
                     
                     </p>
-                    <h5 class="font-semibold text-3xl capitalize">Corporate Address</h5><br>
+                    <h5 class="text-gray-700 font-extrabold text-3xl capitalize">Corporate Address</h5><br>
                     <div class="flex flex-col mb-3">
                         <h5 class="text-gray-700"> <i class="fas fa-map-marker-alt"></i> GE-263-2093</h5>
                         <p class="text-gray-700"> Accra, Ghana.</p>
@@ -363,7 +363,7 @@
             <div class="container mx-auto px-4">
               <div class="flex flex-wrap">
                 <div class="w-full lg:w-6/12 px-4">
-                  <h4 class="text-3xl font-semibold">Let's keep in touch!</h4>
+                  <h4 class="text-3xl text-gray-700 font-extrabold">Let's keep in touch!</h4>
                   <h5 class="text-lg mt-0 mb-2 text-gray-700">
                     Find us on any of these platforms.
                   </h5>

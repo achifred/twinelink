@@ -4,26 +4,26 @@
 @include('layouts.authnav')
 <div class="container mx-auto mt-20">
     <h3 class="text-gray-700 font-bold text-center capitalize text-2xl ">Create A TwineLink Account for free</h3>
-    @include('layouts.alert')
+    
     <div class=" w-full lg:w-1/3 md:w-2/4 mx-auto">
     <form class="bg-white rounded shadow px-8 pt-6 mt-8 mb-4 " action="{{URL::to('/register')}}" method="POST">
        @csrf
         
 
-        
+       @include('layouts.alert')
         <div class=" border-b border-orange-600 py-2 mb-4">
             
-            <input type="email" name="email" id="email" class="appearance-none bg-transparent border-none w-full text-gray-500 mr-3 py-1 px-2 leading-tight focus:outline-none" placeholder="Email Address">
+            <input type="email" name="email" id="email" class="appearance-none bg-transparent border-none w-full text-gray-500 mr-3 py-1 px-2 leading-tight focus:outline-none" placeholder="Email Address" required>
         </div>
         <div class=" border-b border-orange-600 py-2 mb-4">
             
-            <input type="text" name="username" id="username" class="appearance-none bg-transparent border-none w-full text-gray-500 mr-3 py-1 px-2 leading-tight focus:outline-none" placeholder="Username">
+            <input type="text" name="username" id="username" class="appearance-none bg-transparent border-none w-full text-gray-500 mr-3 py-1 px-2 leading-tight focus:outline-none" placeholder="Username" required>
         </div>
         
 
         <div class=" flex items-center border-b border-orange-600 py-2 mb-4">
             
-            <input type="password" name="password" id="password" class="appearance-none bg-transparent border-none w-full text-gray-500 mr-3 py-1 px-2 leading-tight focus:outline-none" placeholder="Password">
+            <input type="password" name="password" id="password" class="appearance-none bg-transparent border-none w-full text-gray-500 mr-3 py-1 px-2 leading-tight focus:outline-none" placeholder="Password" required>
             <button onclick="togglePasswordVisibility()" class="flex-shrink-0 bg-gray-600 hover:bg-teal-700  hover:border-teal-700 text-sm  text-white py-1 px-2 rounded" type="button">
                 <i class="fa fa-eye"></i>
               </button>
@@ -49,6 +49,18 @@
             <small>By creating an account you have agreed to the terms and conditions of this platform</small>
           </a>
     </div>
+
+    <div class="flex justify-center">
+        <a class="text-gray-600 hover:text-gray-800  px-3 py-4 lg:py-2 flex items-center text-base text-center capitalize font-bold"
+            href="{{ URL::to('/about') }}">
+           <u> about us</u>
+        </a>
+        
+        <a class="text-gray-600 hover:text-gray-800  px-3 py-4 lg:py-2 flex items-center text-base text-center capitalize font-bold"
+            href="{{ URL::to('/') }}">
+           <u> home</u>
+        </a>
+      </div>
 </div>
 
 <script>

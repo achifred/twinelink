@@ -18,7 +18,7 @@
                 <div class="flex flex-wrap">
                     <div class="w-full lg:w-6/12 mr-auto ml-auto text-center px-4">
 
-                        <h1 class="text-6xl font-bold text-gray-800">About Twinelink</h1>
+                        <h1 class="text-6xl text-gray-700 font-extrabold">About Twinelink</h1>
                        
                         <p class=" text-2xl lg:text-3xl italic font-bold leading-relaxed text-gray-700 px-6 py-3 "><q> your presence on the internet should never be a headache.  That's why Twinelink is here to make that a hustle free!!</q></p>
                        
@@ -54,7 +54,7 @@
                     >
                       <i class="fas fa-address-book text-xl"></i>
                     </div>
-                    <h3 class="text-3xl  font-semibold leading-normal capitalize">
+                    <h3 class="text-3xl text-gray-700 font-extrabold leading-normal capitalize">
                       Get in touch
                     </h3>
                     <p
@@ -63,7 +63,7 @@
                     We are located in Ghana, West Africa. Send us an email, give us a call, or send a brief message if you're interested in reaching us. 
                     
                     </p>
-                    <h5 class="font-semibold text-3xl capitalize">Corporate Address</h5><br>
+                    <h5 class="text-gray-700 font-extrabold text-3xl capitalize">Corporate Address</h5><br>
                     <div class="flex flex-col mb-3">
                         <h5 class="text-gray-700"> <i class="fas fa-map-marker-alt"></i> GE-263-2093</h5>
                         <p class="text-gray-700"> Accra, Ghana.</p>
@@ -73,7 +73,7 @@
                         <h5 class="text-gray-700"> <i class="fas fa-phone"></i> 0548480707</h5>
                     </div>
                     <div class="flex flex-col">
-                        <h5 class="text-gray-700"> <i class="fa fa-envelope"></i> info@twinelink.com</h5>
+                        <h5 class="text-gray-700"> <i class="fa fa-envelope"></i> twinelink@gmail.com</h5>
                     </div>
         
                    
@@ -169,7 +169,7 @@
             <div class="container mx-auto px-4">
               <div class="flex flex-wrap">
                 <div class="w-full lg:w-6/12 px-4">
-                  <h4 class="text-3xl font-semibold">Let's keep in touch!</h4>
+                  <h4 class="text-3xl text-gray-700 font-extrabold">Let's keep in touch!</h4>
                   <h5 class="text-lg mt-0 mb-2 text-gray-700">
                     Find us on any of these platforms.
                   </h5>

@@ -4,12 +4,13 @@
 
 <div class="container mx-auto ">
   
-    @include('layouts.alert')
+   
     <h3 class="mt-20 text-center text-gray-700 font-bold text-xl">Login to your TwineLink Dashboard </h3>
     <div class=" w-full lg:w-6/12 container mx-auto flex justify-center">
-          
+      
             <form class="bg-white rounded shadow px-8 pt-6 pb-8 mb-4 mt-8" action="{{URL::to('/login')}}" method="POST">
                 @csrf
+                @include('layouts.alert')
                     <h3 class="text-center  font-bold text-gray-700">Sign In</h3>
                     <div class=" border-b border-orange-600 py-2 mb-4">
                       
@@ -38,6 +39,18 @@
             <a class="inline-block text-center align-baseline font-bold text-lg text-gray-700 py-3 px-4 hover:text-gray-500" href="{{URL::to('/register')}}">
                 Don't have an account? <span><u>Create One</u></span>
               </a>
+        </div>
+        
+        <div class="flex justify-center">
+          <a class="text-gray-600 hover:text-gray-800  px-3 py-4 lg:py-2 flex items-center text-base text-center capitalize font-bold"
+              href="{{ URL::to('/about') }}">
+             <u> about us</u>
+          </a>
+          
+          <a class="text-gray-600 hover:text-gray-800  px-3 py-4 lg:py-2 flex items-center text-base text-center capitalize font-bold"
+              href="{{ URL::to('/') }}">
+             <u> home</u>
+          </a>
         </div>
 </div>
 

@@ -26,6 +26,6 @@ class EnqueryEventListener implements ShouldQueue
      */
     public function handle($event)
     {
-        Mail::to('fachiloyalti@gmail.com')->send(New Enquerymail($event->details,$event->email,$event->subject));
+        Mail::to('twinelink@gmail.com')->send(New Enquerymail($event->details,$event->email,$event->subject));
     }
 }

@@ -17,7 +17,7 @@ class CreateEnqueriesTable extends Migration
             $table->id();
             $table->string('full_name');
             $table->string('email');
-            $table->string('phone');
+            $table->string('subject');
             $table->text('message');
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP'));
