@@ -67,6 +67,10 @@ public function register(Request $request){
     if($is_valid->fails()){
         return redirect()->back()->withErrors($is_valid);
     }
+    $user = User::where('email',$data['email'])->get();
+    if(count($user)>0){
+        return redirect()->back()->withErrors(['errors'=>'An account already exist']);
+    }
     $color = Color::first();
     $data['color_id']=$color->id;
     $data['password']=Hash::make($data['password']);
@@ -74,7 +78,8 @@ public function register(Request $request){
     return redirect('/login')->with('msg','login with your credentials');
 
     } catch (\Throwable $th) {
-        throw $th;
+        //throw $th;
+        return redirect()->back()->withErrors(['errors'=>'Opps!! something went wrong try again']);
     }
 
 }
@@ -116,7 +121,8 @@ public function register(Request $request){
 
 
     public function changePassword(Request $request, $id){
-        $rules = ['oldpassword'=>'required','password'=>'required|min:6|max:32'];
+        try {
+            $rules = ['oldpassword'=>'required','password'=>'required|min:6|max:32'];
         $request_body = $request->only(['oldpassword','password']);
         $isvalid = Validator::make($request_body,$rules);
         if($isvalid->fails()){
@@ -132,6 +138,10 @@ public function register(Request $request){
         }
         $res= $data->update(['password'=>Hash::make($request_body['password'])]);
         return $res?redirect('/admin/logout'):redirect()->back()->withErrors(['errors'=>'something went wrong']);
+        } catch (\Throwable $th) {
+            //throw $th;
+            return redirect()->back()->withErrors(['errors'=>'Opps!! something went wrong try again']);
+        }
     }
 
     public function update(Request $request,  $user_id){
@@ -246,12 +256,13 @@ public function register(Request $request){
     }
 
     public function resetPassword(Request $request){
-        $rules =['email'=>'required|email','password'=>'required|min:6|max:32'];
+        try {
+            $rules =['email'=>'required|email','password'=>'required|min:6|max:32'];
         $data =$request->only(['email','password']);
         $isvalid = Validator::make($data,$rules);
         if($isvalid->fails()){
             
-            return redirect()->back()->withErrors($isvalid);
+            return redirect()->back()->withErrors($isvalid->messages());
         }
         $user = User::where('email',$data['email']);
         if(count($user->get())<=0){
@@ -260,6 +271,9 @@ public function register(Request $request){
         $password =$data['password'];
         $user->update(['password'=>Hash::make($password)]);
         return redirect('/login')->with('msg','password updated, Login with your new credentials');
+        } catch (\Throwable $th) {
+            return redirect()->back()->withErrors(['errors'=>'Opps!! something went wrong try again']);
+        }
     }
     public function setting(){
         return view('admin.account.setting');
