@@ -29,6 +29,6 @@ class ResetMail extends Mailable
      */
     public function build()
     {
-        return $this->from('info@mdainsolutions.com')->subject('Password Reset Link')->view('email.resetmail');
+        return $this->from('twinelink@gmail.com')->subject('Password Reset Link')->view('email.resetmail');
     }
 }
