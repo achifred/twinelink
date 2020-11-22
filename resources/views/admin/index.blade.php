@@ -194,8 +194,8 @@
                         </div>
                         <div class="flex flex-col text-center pt-10 ">
                             <div class="container mx-auto ">
-                                <div v-for="item in links" @key="item.id">
-                                    <div class="px-4 py-2 border-b-4 w-10/12  mx-auto border-green-600 rounded  mb-4 "
+                                <div v-for="item in links" @key="item.id" >
+                                    <div  class="px-4 py-2 border-b-4 w-10/12 cursor-move mx-auto border-green-600 rounded  mb-4 "
                                         style=" background-color:{{ auth()->user()->color->text_color }};color:{{ auth()->user()->color->background_color }}; ">
                                         <span class="text-xl inline-block mr-2 align-middle">
                                             <img :src="item.icon" alt="">
@@ -385,7 +385,9 @@
                     } catch (error) {
 
                     }
-                }
+                },
+
+
 
             }
         })

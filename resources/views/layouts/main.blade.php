@@ -1,7 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-4M332RX5GP"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-4M332RX5GP');
+</script>
+
     <meta charset="UTF-8">
+    <meta name="description" content="Promote all your products using just one simple link. Get all your links in one safe place. Your social media presence made so easy.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>TwineLink</title>
