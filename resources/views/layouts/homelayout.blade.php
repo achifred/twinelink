@@ -20,11 +20,13 @@
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
     <script src="https://kit.fontawesome.com/353c6e4283.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 </head>
 <body>
   @include('layouts.navbar')
     @yield('content')
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.3.4/gsap.min.js" ></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script src="{{ URL::asset('js/app.js') }}" ></script>
     <script>
       function toggleNavbar(collapseID) {
@@ -41,6 +43,7 @@
         element.parentNode.parentNode.removeChild(element.parentNode);
       }
     </script>
+     
     @yield('script')
 </body>
 </html>

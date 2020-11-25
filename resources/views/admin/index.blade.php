@@ -14,9 +14,15 @@
 
                 </div>
                 <div class=" block lg:flex lg:justify-center mb-3 mx-auto">
-                    <span class="text-gray-900 mr-2">My TwineLink:</span>
-                    <a href="{{ URL::to('/' . auth()->user()->username) }}" class="text-gray-500"
-                        target="blank"><u>{{ url('') }}/{{ auth()->user()->username }}</u></a>
+                    <span class="text-gray-600 mr-2 font-bold">My TwineLink:</span>
+                    
+                    <div class="flex">
+                        <a href="{{ URL::to('/' . auth()->user()->username) }}" class="text-gray-500"target="blank" >
+                            <input type="text" value="{{ url('') }}/{{ auth()->user()->username }}" id="copylink" class="appearance-none cursor-pointer bg-transparent border-none w-full text-gray-500 mr-3 py-1 px-2 leading-tight focus:outline-none" readonly>
+                       </a>
+                       <button title="copy link" @click.prevent="copyText" class=" text-gray-600 font-bold  focus:outline-none focus:shadow-outline" id="linkhref" ><i class="fa fa-copy"></i></button>
+                    </div>
+                       
                 </div>
                 <div class=" block lg:flex lg:justify-center mb-3 mx-auto">
 
@@ -255,8 +261,21 @@
                 this.allicons()
 
             },
-
+ 
             methods: {
+                copyText(){
+                    let text = document.getElementById('copylink')
+                    text.select()
+                    text.setSelectionRange(0, 99999)
+                    document.execCommand("copy")
+
+                    // let element = document.getElementById('linkhref')
+                    // element.addEventListener('click',function(event) {
+                    //     event.target.classList.remove("text-gray-600")
+                    //     event.target.classList.add("text-green-600")
+                    // })
+                    
+                },
                 async allLinks() {
                     try {
                         this.isLoading = true
