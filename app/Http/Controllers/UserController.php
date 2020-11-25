@@ -260,7 +260,7 @@ public function register(Request $request){
             return response()->json(['status'=>'fail','code'=>400, 'error'=>'Wrong credentials. check and try again']);
         }
         $details =[
-            'link'=>URL::temporarySignedRoute('resetlink',now()->addMinutes(5))
+            'link'=>URL::temporarySignedRoute('resetlink',now()->addMinutes(10))
         ];
         $email =$data['email'];
         event(new PasswordResetEvent($details,$email));
