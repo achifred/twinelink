@@ -11,6 +11,7 @@ use Hash;
 use Session;
 use URL;
 use Image;
+use Storage;
 use App\Color;
 use App\Events\PasswordResetEvent;
 use App\Events\LinkViewEvent;
@@ -173,6 +174,17 @@ public function register(Request $request){
             }
             $picture  = $request->file('picture');
             
+            $old_picture = User::where('id',$user_id)->get();
+            if($old_picture[0]->picture !=NULL){   
+            $exploded_image_array = explode("/",$old_picture[0]->picture);
+            $old_image = end($exploded_image_array);
+            $old_image_path = public_path('uploads/avatar/').$old_image;
+            if(file_exists($old_image_path)){
+                unlink($old_image_path);
+            }
+            
+
+            }
             $path = $this->addImage('uploads/avatar/',$picture,env('APP_URL'));
 
             $res = User::where('id',$user_id)->update(['picture'=>$path]);
@@ -196,7 +208,17 @@ public function register(Request $request){
                 return response()->json(['status'=>'fail','code'=>400, 'error'=>$is_valid->messages()]);
             }
             $picture  = $request->file('banner');
+            $old_banner = User::where('id',$user_id)->get();
+            if($old_banner[0]->banner !=NULL){   
+            $exploded_banner_array = explode("/",$old_banner[0]->banner);
+            $old_banner = end($exploded_banner_array);
+            $old_banner_path = public_path('uploads/banner/').$old_banner;
+            if(file_exists($old_banner_path)){
+                unlink($old_banner_path);
+            }
             
+
+            }
             $path = $this->addBanner('uploads/banner/',$picture,env('APP_URL'));
 
             $res = User::where('id',$user_id)->update(['banner'=>$path]);
@@ -212,9 +234,11 @@ public function register(Request $request){
         User::destroy($user_id);
         return redirect('/');
     }
-    public function signout(){
+    public function signout(Request $request){
+        $token = $request->user()->tokens();
+        $token->delete();
         Auth::logout();
-        return redirect('/login');
+        return redirect('/login')->with('msg','Hi! buddy, do come back some other time');
     }
 
 
@@ -236,7 +260,7 @@ public function register(Request $request){
             return response()->json(['status'=>'fail','code'=>400, 'error'=>'Wrong credentials. check and try again']);
         }
         $details =[
-            'link'=>URL::temporarySignedRoute('resetlink',now()->addMinutes(5))
+            'link'=>URL::temporarySignedRoute('resetlink',now()->addMinutes(10))
         ];
         $email =$data['email'];
         event(new PasswordResetEvent($details,$email));

@@ -20,7 +20,7 @@
        <h3 class="text-center font-weight-bolder">Password Resset</h3>
        <p>
            Kindly follow the link to change your password
-           This link will expire in 5 minutes
+           This link will expire in 10 minutes
        <h5>{{$details['link']}}</h5>
      </p>
       

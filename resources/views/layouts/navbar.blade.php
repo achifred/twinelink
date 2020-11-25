@@ -27,17 +27,37 @@
          
           <ul class="flex flex-col lg:flex-row list-none lg:ml-auto">
             <li class="flex items-center">
+            
+              <a
+              class="text-gray-500 px-3 py-4 lg:py-2 flex items-center  capitalize font-bold"
+             href="{{URL::to('/about')}}"
+              >
+              About Us
+              </a>
+            
+             </li>
+             <li class="flex items-center">
+            
+              <a
+              class="text-gray-500 px-3 py-4 lg:py-2 flex items-center  capitalize font-bold"
+             href="#contact"
+              >
+              Contact Us
+              </a>
+            
+             </li>
+            <li class="flex items-center">
              @if (auth()->user())
              <a
              class="text-gray-500 px-3 py-4 lg:py-2 flex items-center  capitalize font-bold"
-         href="{{URL::to('/admin/logout')}}"
+            href="{{URL::to('/admin/logout')}}"
              >
              Log out
              </a>
              @else
              <a
              class="text-gray-500 px-3 py-4 lg:py-2 flex items-center  capitalize font-bold"
-         href="{{URL::to('/login')}}"
+             href="{{URL::to('/login')}}"
              >
              Log in
              </a>
@@ -54,7 +74,7 @@
              @else
              <a
              class=" font-bold  mr-4 px-3 py-2 whitespace-no-wrap capitalize bg-white border border-gray-600 rounded-lg text-gray-500"
-           href="{{URL::to('/register')}}"
+            href="{{URL::to('/register')}}"
              >
              Sign Up Free
              </a>
