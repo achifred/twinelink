@@ -15,9 +15,20 @@
                                 <span class="text-xl inline-block mr-5 align-middle">
                                   <i class="fas fa-bell"></i>
                                 </span>
-                                <span class="inline-block align-middle mr-8">
-                                  @{{msg}}
+                                <span v-if="msg.tittle" class="inline-block align-middle mr-8">
+                                  @{{msg.tittle[0]}}
+                                  @{{msg.cover_art?msg.cover_art[0]:''}}
+                                  
                                 </span>
+                                <span v-else-if="msg.cover_art" class="inline-block align-middle mr-8">
+                                    @{{msg.cover_art[0]}}
+                                    @{{msg.tittle?msg.tittle[0]:''}}
+                                    
+                                  </span>
+                                  <span v-else class="inline-block align-middle mr-8">
+                                    @{{msg}}
+                                    
+                                  </span>
                                 <button class="absolute bg-transparent text-2xl font-semibold leading-none right-0 top-0 mt-4 mr-6 outline-none focus:outline-none" onclick="closeAlert(event)">
                                   <span>×</span>
                               
@@ -330,10 +341,10 @@
                             this.msg ='cover art can not be empty'
                             return
                         }
-                        if(this.urls==[]){
+                        if(this.urls.length<1){
                             this.isAdding=false
                             this.isError =true
-                            this.msg ='cover art can not be empty'
+                            this.msg ='url can not be empty'
                             return
                         }
 

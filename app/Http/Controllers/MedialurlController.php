@@ -61,9 +61,12 @@ class MedialurlController extends Controller
             $data->transform(function($item, $key){
                 $urls = Medialurl::where('medialtittle_id',$item->id)->where('is_active',1)->withCount('visit')->get();
                 $urls->transform(function($item, $key){
-                    $icon = Icon::where('id',$item->icon_id)->first();
-                    $item->icon = $icon->icon_path;
-                    $item->icon_name = $icon->icon_name;
+                    $icon = Icon::where('id',$item->icon_id)->get();
+                    if(count($icon)>0){
+                        $item->icon = $icon[0]->icon_path;
+                        $item->icon_name = $icon[0]->icon_name;
+                    }
+                   
                     return $item;
                 });
                 $item->urls = $urls;
@@ -84,9 +87,12 @@ class MedialurlController extends Controller
             $links->transform(function($item, $key){
                 $urls = Medialurl::where('medialtittle_id',$item->id)->where('is_active',1)->withCount('visit')->get();
                 $urls->transform(function($item, $key){
-                    $icon = Icon::where('id',$item->icon_id)->first();
-                    $item->icon = $icon->icon_path;
-                    $item->icon_name = $icon->icon_name;
+                    $icon = Icon::where('id',$item->icon_id)->get();
+                    if(count($icon)>0){
+                        $item->icon = $icon[0]->icon_path;
+                        $item->icon_name = $icon[0]->icon_name;
+                    }
+                    
                     return $item;
                 });
                 $item->urls = $urls;
@@ -103,8 +109,8 @@ class MedialurlController extends Controller
             return view('admin.links.url', $data);
             //return response()->json(['status'=>'success','code'=>200,'data'=>$data]);
         } catch (\Throwable $th) {
-            throw $th;
-            //return redirect()->back()->withErrors(['errors'=>'opps!! something went wrong']);
+            //throw $th;
+            return redirect()->back()->withErrors(['errors'=>'opps!! An error has occured']);
         }
     }
 
@@ -136,6 +142,7 @@ class MedialurlController extends Controller
             ];
             $request_body = $request->only(['user_id','url','tittle','cover_art','preview']);
             $is_valid = Validator::make($request_body,$rules);
+            
             if($is_valid->fails()){
                 return response()->json(['status'=>'fail','code'=>400,'error'=>$is_valid->messages()]);
             }
@@ -175,9 +182,12 @@ class MedialurlController extends Controller
             $tittle->transform(function($item, $key){
                 $urls = Medialurl::where('medialtittle_id',$item->id)->where('is_active',1)->withCount('visit')->get();
                 $urls->transform(function($item, $key){
-                    $icon = Icon::where('id',$item->icon_id)->first();
-                    $item->icon = $icon->icon_path;
-                    $item->icon_name = $icon->icon_name;
+                    $icon = Icon::where('id',$item->icon_id)->get();
+                    if(count($icon)>0){
+                        $item->icon = $icon[0]->icon_path;
+                    $item->icon_name = $icon[0]->icon_name;
+                    }
+                    
                     return $item;
                 });
                 $item->urls = $urls;
@@ -187,8 +197,8 @@ class MedialurlController extends Controller
 
             return response()->json(['status'=>'success','code'=>200,'data'=>$tittle[0]]);
         } catch (\Throwable $th) {
-            //throw $th;
-            return response()->json(['status'=>'fail','code'=>400,'error'=>'something went wrong']);
+            throw $th;
+            //return response()->json(['status'=>'fail','code'=>400,'error'=>'something went wrong']);
         }
     }
 

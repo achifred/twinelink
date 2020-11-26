@@ -43,26 +43,26 @@ class LinkController extends Controller
         $rules =['name'=>'required','link'=>'required|url','user_id'=>'required'];
         $data = $request->only(['name','link','user_id','icon_id']);
         $isValid = Validator::make($data,$rules);
+        //return $isValid->errors();
         if($isValid->fails()){
-            return response()->json(['status'=>'fail','code'=>400,'error'=>$isValid->messages()]);
+            return response()->json(['status'=>'fail','code'=>400,'error'=>$isValid->errors()]);
         }
-        // if($request->hasFile('thumbnail')){
-        //     $thumbnail = $request->file('thumbnail');
-        //     $path = $this->addImage('uploads/thumbnails/',$thumbnail,env('APP_URL'));
-        //     $data['thumbnail'] = $path;
-        // }
 
+        //return $data['icon_id'];
+    
         $res= Link::create($data);
         $link = Link::where('id',$res->id)->get();
         $link->transform(function($item, $key){
-            $icon = Icon::where('id',$item->icon_id)->first();
-            $item->icon = $icon->icon_path;
+            $icon = Icon::where('id',$item->icon_id)->get();
+            if(count($icon)>0){
+                $item->icon = $icon[0]->icon_path;
+            }
             return $item;
         });
        return $link?response()->json(['status'=>'success','code'=>200,'data'=>$link[0]]):response()->json(['status'=>'fail','code'=>400,'error'=>'something went wrong']);
        } catch (\Throwable $th) {
-        return response()->json(['status'=>'fail','code'=>400,'error'=>'something went wrong']);
-          // throw $th;
+        //return response()->json(['status'=>'fail','code'=>400,'error'=>'something went wrong']);
+           throw $th;
        }
 
     }
@@ -70,8 +70,11 @@ class LinkController extends Controller
     public function edit($link){
        $data = Link::where('id',$link)->get();
        $data->transform(function($item, $key){
-        $icon = Icon::where('id',$item->icon_id)->first();
-        $item->icon = $icon->icon_path;
+        $icon = Icon::where('id',$item->icon_id)->get();
+        if(count($icon)>0){
+            $item->icon = $icon[0]->icon_path;
+        }
+        
         return $item;
     });
        return response()->json(['status'=>'success','code'=>200,'data'=>$data[0]]);
@@ -90,10 +93,13 @@ class LinkController extends Controller
        $res = Link::where('id',$link)->update($data);
        $resp =Link::where('id',$link)->get();
        $resp->transform(function($item, $key){
-        $icon = Icon::where('id',$item->icon_id)->first();
-        $item->icon = $icon->icon_path;
+        $icon = Icon::where('id',$item->icon_id)->get();
+        if(count($icon)>0){
+            $item->icon = $icon[0]->icon_path;
+        }
+    
         return $item;
-    });
+        });
         return $res?response()->json(['status'=>'success','code'=>200,'data'=>$resp]):response()->json(['status'=>'fail','code'=>400,'error'=>'something went wrong']);
         } catch (\Throwable $th) {
             return response()->json(['status'=>'fail','code'=>400,'error'=>'something went wrong']);
@@ -104,8 +110,10 @@ class LinkController extends Controller
     public function userLinks($user_id){
         $link = Link::where('user_id',$user_id)->withCount('visits')->get();
         $link->transform(function($item, $key){
-            $icon = Icon::where('id',$item->icon_id)->first();
-            $item->icon = $icon->icon_path;
+            $icon = Icon::where('id',$item->icon_id)->get();
+            if(count($icon)>0){
+                $item->icon = $icon[0]->icon_path;
+            }
             return $item;
         });
         $data['user_links'] = $link;

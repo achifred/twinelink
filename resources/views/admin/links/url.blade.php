@@ -62,19 +62,22 @@
             <h3 class="text-gray-800 font-bold text-sm text-center capitalize">get in touch</h3>
             <div class="container mx-auto flex flex-wrap justify-center" >
             @foreach ($user_social_links as $item)
-        <a href="{{$item->link}}" target="blank"> <img class="h-5 w-5 mr-2" src="{{$item->icon->icon_path}}" alt=""> </a>
-        <a href="{{$item->link}}" target="blank"> <img class="h-5 w-5 mr-2" src="{{$item->icon->icon_path}}" alt=""> </a>
-        <a href="{{$item->link}}" target="blank"> <img class="h-5 w-5 mr-2" src="{{$item->icon->icon_path}}" alt=""> </a>
-        <a href="{{$item->link}}" target="blank"> <img class="h-5 w-5 mr-2" src="{{$item->icon->icon_path}}" alt=""> </a>
-        <a href="{{$item->link}}" target="blank"> <img class="h-5 w-5 mr-2" src="{{$item->icon->icon_path}}" alt=""> </a>
-
+        <a href="{{$item->link}}" target="blank"> 
+            @if ($item->icon)
+            <img class="h-5 w-5 mr-2" src="{{$item->icon->icon_path}}" alt=""> 
+            @else
+                {{$item->name}}
+            @endif
+            
+        </a>
+        
             @endforeach
             </div>
         </div>
 
 
    <div class="flex justify-center">
-    <a href="{{URL::to('/')}}" class="text-gray-500 font-bold   text-xl text-center ">@TwineLink</a>
+    <a href="{{URL::to('/')}}" class="text-gray-500 font-bold   text-xl text-center ">twinelink.com</a>
    </div>
     </div>
 @endsection

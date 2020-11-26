@@ -38,8 +38,17 @@
                             <span class="text-xl inline-block mr-5 align-middle">
                                 <i class="fas fa-bell"></i>
                             </span>
-                            <span class="inline-block align-middle mr-8">
-                                @{{ msg }}
+                            <span v-if="msg.name" class="inline-block align-middle mr-8">
+                                @{{msg.name[0] }}
+                                @{{ msg.link?msg.link[0] }}
+                            </span>
+                            <span v-else-if="msg.link" class="inline-block align-middle mr-8">
+                                @{{msg.link[0] }}
+                                @{{ msg.name?msg.name[0] }}
+                            </span>
+                            <span v-else class="inline-block align-middle mr-8">
+                                @{{msg }}
+                                
                             </span>
                             <button
                                 class="absolute bg-transparent text-2xl font-semibold leading-none right-0 top-0 mt-4 mr-6 outline-none focus:outline-none"
@@ -94,8 +103,17 @@
                             <span class="text-xl inline-block mr-5 align-middle">
                                 <i class="fas fa-bell"></i>
                             </span>
-                            <span class="inline-block align-middle mr-8">
-                                @{{ msg }}
+                            <span v-if="msg.name" class="inline-block align-middle mr-8">
+                                @{{msg.name[0] }}
+                                @{{ msg.link?msg.link[0] }}
+                            </span>
+                            <span v-else-if="msg.link" class="inline-block align-middle mr-8">
+                                @{{msg.link[0] }}
+                                @{{ msg.name?msg.name[0] }}
+                            </span>
+                            <span v-else class="inline-block align-middle mr-8">
+                                @{{msg }}
+                                
                             </span>
                             <button
                                 class="absolute bg-transparent text-2xl font-semibold leading-none right-0 top-0 mt-4 mr-6 outline-none focus:outline-none"
@@ -115,7 +133,7 @@
                             
     
                             <div class=" flex justify-around border-b border-green-500 py-2 mb-4 ">
-                                <h5 class="text-gray-600" >Icon</h5>
+                                <h5 class="text-gray-600 " >Icon</h5>
                                 <v-select :options="icons" label="icon_name" v-model="icon_id"
                                     class=" bg-transparent border-none w-full text-gray-500 mr-3 py-1 px-2 leading-tight focus:outline-none">
                                     <template slot="option" slot-scope="option">
@@ -129,11 +147,17 @@
     
                             </div>
 
-                            <div class="border-b border-green-500 py-2 mb-4 ">
-
+                            <div class="  border-b border-green-500 py-2 mb-4 ">
+                                <div class="flex">
+                                   
+                                    <input type="text" name="https" id="https" 
+                                    class="appearance-none bg-transparent border-none w-1/2 text-gray-500 -ml-3   focus:outline-none"
+                                    value="https://" readonly>
+                                
                                 <input type="text" name="link" id="link" v-model="link"
-                                    class="appearance-none bg-transparent border-none w-full text-gray-500 mr-3 py-1 px-2 leading-tight focus:outline-none"
-                                    placeholder="link" required>
+                                    class="appearance-none bg-transparent border-none w-full text-gray-500 -ml-12 lg:-ml-20 py-1 px-2 leading-tight focus:outline-none"
+                                    placeholder="link here eg. example.com" required>
+                                </div>
                             </div>
 
                         </div>
@@ -183,7 +207,7 @@
             <div class="w-full lg:w-6/12 contaniner mx-auto ">
                 <div class="block lg:flex  ">
 
-                    <div class=" w-full border-l-4 border-green-600 shadow-2xl h-screen lg:mt-5  rounded-lg  ml-auto mr-auto lg:w-8/12"
+                    <div class=" w-full border-l-4 border-green-600 shadow-2xl h-auto lg:mt-5  rounded-lg  ml-auto mr-auto lg:w-8/12"
                         style="background:{{ auth()->user()->color->background_color }}">
                         <div class="relative flex flex-col justify-center">
 
@@ -198,10 +222,10 @@
                             <small
                                 class="text-center mt-12 text-gray-500"><small>@</small>{{ auth()->user()->username }}</small>
                         </div>
-                        <div class="flex flex-col text-center pt-10 ">
+                        <div class="flex flex-col text-center pt-5 ">
                             <div class="container mx-auto ">
                                 <div v-for="item in links" @key="item.id" >
-                                    <div  class="px-4 py-2 border-b-4 w-10/12 cursor-move mx-auto border-green-600 rounded  mb-4 "
+                                    <div  class="lg:px-4 lg:py-2 border-b-4 w-10/12 mx-auto border-green-600 rounded  mb-4 "
                                         style=" background-color:{{ auth()->user()->color->text_color }};color:{{ auth()->user()->color->background_color }}; ">
                                         <span class="text-xl inline-block mr-2 align-middle">
                                             <img :src="item.icon" alt="">
@@ -240,7 +264,7 @@
                     name: '',
                     link: '',
                     icon_id: '',
-
+                    iconid:'',
                     links: [],
                     link_impression: '',
                     isLoading: false,
@@ -319,11 +343,16 @@
 
                         this.isAdding = true
                         let formdata = new FormData()
-                        //formdata.append('thumbnail', this.fileSelected, this.fileSelected.name)
+                        let link = `${document.getElementById('https').value}${this.link}`
+                        this.iconid = this.icon_id.id
+                        if(this.iconid==null||undefined){
+                            this.iconid=''
+                        }
+                        
                         formdata.append('user_id', this.user_id)
                         formdata.append('name', this.name)
-                        formdata.append('link', this.link)
-                        formdata.append('icon_id', this.icon_id.id)
+                        formdata.append('link', link)
+                        formdata.append('icon_id', this.iconid)
                         const res = await axios.post(`/api/links`, formdata,
                             axios.defaults.headers.common['Authorization'] = `Bearer ${this.token}`
                         )
@@ -336,13 +365,14 @@
                             return
                         }
                         this.isAdding = false,
-                            this.isError = true
+                        this.isError = true
                         this.msg = res.data.error
+                        //console.log(this.msg)
                     } catch (error) {
                         this.isAdding = false
                         this.isError = true
-                        console.log(error)
-                        //this.msg='something went wrong'
+                        //console.log(error)
+                        this.msg='something went wrong'
                     }
                 },
 
