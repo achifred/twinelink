@@ -40,11 +40,11 @@
                             </span>
                             <span v-if="msg.name" class="inline-block align-middle mr-8">
                                 @{{msg.name[0] }}
-                                @{{ msg.link?msg.link[0] }}
+                                @{{ msg.link?msg.link[0]:'' }}
                             </span>
                             <span v-else-if="msg.link" class="inline-block align-middle mr-8">
                                 @{{msg.link[0] }}
-                                @{{ msg.name?msg.name[0] }}
+                                @{{ msg.name?msg.name[0]:'' }}
                             </span>
                             <span v-else class="inline-block align-middle mr-8">
                                 @{{msg }}
@@ -104,15 +104,15 @@
                                 <i class="fas fa-bell"></i>
                             </span>
                             <span v-if="msg.name" class="inline-block align-middle mr-8">
-                                @{{msg.name[0] }}
-                                @{{ msg.link?msg.link[0] }}
+                                @{{msg.name[0]}}
+                                @{{ msg.link?msg.link[0]:''}}
                             </span>
                             <span v-else-if="msg.link" class="inline-block align-middle mr-8">
-                                @{{msg.link[0] }}
-                                @{{ msg.name?msg.name[0] }}
+                                @{{msg.link[0]}}
+                                @{{ msg.name?msg.name[0]:''}}
                             </span>
                             <span v-else class="inline-block align-middle mr-8">
-                                @{{msg }}
+                                @{{msg}}
                                 
                             </span>
                             <button
