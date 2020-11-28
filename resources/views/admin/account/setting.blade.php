@@ -32,7 +32,7 @@
     
                 <div class="block lg:flex flex-wrap ">
 
-                    <div class="w-full border-l-4 border-green-600 shadow-2xl h-screen lg:mt-5  rounded-lg  ml-auto mr-auto lg:w-8/12" :style="{background:bg}" >
+                    <div class="w-full border-l-4 border-green-600 shadow-2xl min-h-screen lg:mt-5  rounded-lg  ml-auto mr-auto lg:w-8/12" :style="{background:bg}" >
                         
                         <div class="relative flex flex-col justify-center">
                             

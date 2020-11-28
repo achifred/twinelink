@@ -207,7 +207,7 @@
             <div class="w-full lg:w-6/12 contaniner mx-auto ">
                 <div class="block lg:flex  ">
 
-                    <div class=" w-full border-l-4 border-green-600 shadow-2xl h-auto lg:mt-5  rounded-lg  ml-auto mr-auto lg:w-8/12"
+                    <div class=" w-full border-l-4 border-green-600 shadow-2xl min-h-screen lg:mt-5  rounded-lg  ml-auto mr-auto lg:w-8/12"
                         style="background:{{ auth()->user()->color->background_color }}">
                         <div class="relative flex flex-col justify-center">
 

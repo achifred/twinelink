@@ -10,7 +10,7 @@
         <div class="block lg:flex flex-wrap ">
 
                
-                <div  class="w-full border-l-4 border-green-600 shadow-xl h-auto lg:mt-5  rounded-lg mb-2 ml-auto mr-auto lg:w-3/12" style="background:{{$background_color}}" >
+                <div  class="w-full border-l-4 border-green-600 shadow-xl min-h-screen lg:mt-5  rounded-lg mb-2 ml-auto mr-auto lg:w-3/12" style="background:{{$background_color}}" >
                     @foreach ($links as $item)
                     <div class="relative flex flex-col justify-center">
                         
@@ -66,7 +66,7 @@
             @if ($item->icon)
             <img class="h-5 w-5 mr-2" src="{{$item->icon->icon_path}}" alt=""> 
             @else
-                {{$item->name}}
+               
             @endif
             
         </a>

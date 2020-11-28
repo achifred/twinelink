@@ -9,7 +9,7 @@
 <div class="contaniner mx-auto min-h-screen " id="client" style="background:{{$background_color}}">
         <div class="block lg:flex flex-wrap ">
 
-            <div class="w-full border-l-4 border-green-600 shadow-2xl h-auto lg:mt-5  rounded-lg  ml-auto mr-auto lg:w-3/12" >
+            <div class="w-full border-l-4 border-green-600 shadow-2xl min-h-screen lg:mt-5  rounded-lg  ml-auto mr-auto lg:w-3/12" >
                 <div class="relative flex flex-col justify-center">
                     
                     <div class=" w-full h-32  bg-center bg-cover bg-no-repeat" style='background-image: url("{{$banner==NULL?URL::asset('img/back2.jpg'):$banner}}");'>
