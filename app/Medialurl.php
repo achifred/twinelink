@@ -20,5 +20,11 @@ class Medialurl extends Model
         
     }
 
+    public function icon(){
+        return $this->belongsTo(Icon::class);
+    }
+
+    
+
     
 }

@@ -57,19 +57,21 @@ class MedialurlController extends Controller
 
     public function userUrls($user_id){
         try {
-            $data = MedialTittle::where('user_id',$user_id)->where('is_active',1)->get();
+            $data = MedialTittle::where('user_id',$user_id)->where('is_active',1)->orderBy('id','DESC')->get();
             $data->transform(function($item, $key){
-                $urls = Medialurl::where('medialtittle_id',$item->id)->where('is_active',1)->withCount('visit')->get();
-                $urls->transform(function($item, $key){
-                    $icon = Icon::where('id',$item->icon_id)->get();
-                    if(count($icon)>0){
-                        $item->icon = $icon[0]->icon_path;
-                        $item->icon_name = $icon[0]->icon_name;
-                    }
+                $item->urls = Medialurl::where('medialtittle_id',$item->id)
+                ->where('is_active',1)
+                ->with('icon')->withCount('visit')->get();
+                // $urls->transform(function($item, $key){
+                //     $icon = Icon::where('id',$item->icon_id)->get();
+                //     if(count($icon)>0){ 
+                //         $item->icon = $icon[0]->icon_path;
+                //         $item->icon_name = $icon[0]->icon_name;
+                //     }
                    
-                    return $item;
-                });
-                $item->urls = $urls;
+                //     return $item;
+                // });
+                 
                 return $item;
             });
 
@@ -85,21 +87,24 @@ class MedialurlController extends Controller
             
             $links = MedialTittle::where('id',$tittle->id)->where('is_active',1)->get();
             $links->transform(function($item, $key){
-                $urls = Medialurl::where('medialtittle_id',$item->id)->where('is_active',1)->withCount('visit')->get();
-                $urls->transform(function($item, $key){
-                    $icon = Icon::where('id',$item->icon_id)->get();
-                    if(count($icon)>0){
-                        $item->icon = $icon[0]->icon_path;
-                        $item->icon_name = $icon[0]->icon_name;
-                    }
+                $item->urls = Medialurl::where('medialtittle_id',$item->id)
+                ->where('is_active',1)
+                ->with('icon')
+                ->withCount('visit')->get();
+                // $urls->transform(function($item, $key){
+                //     $icon = Icon::where('id',$item->icon_id)->get();
+                //     if(count($icon)>0){
+                //         $item->icon = $icon[0]->icon_path;
+                //         $item->icon_name = $icon[0]->icon_name;
+                //     }
                     
-                    return $item;
-                });
-                $item->urls = $urls;
+                //     return $item;
+                // });
+                 
                 return $item;
             });
 
-            $data['user_social_links']= Link::where('user_id',$user->id)->get();
+            $data['user_social_links']= Link::where('user_id',$user->id)->with('icon')->get();
             $data['links'] = $links;
             $data['username'] = $user->username;
             $data['tittle'] = $tittle->tittle;
@@ -121,7 +126,7 @@ class MedialurlController extends Controller
 
     public function edit($id){
         try {
-            $data['url'] = Medialurl::where('id',$id)->first();
+            $data['url'] = Medialurl::where('id',$id)->with('icon')->first();
             return view('admin.links.urledit', $data);
         } catch (\Throwable $th) {
             //throw $th;
@@ -180,25 +185,28 @@ class MedialurlController extends Controller
             $tittle = MedialTittle::where('id',$medialtittle_id)->where('is_active',1)->get();
             
             $tittle->transform(function($item, $key){
-                $urls = Medialurl::where('medialtittle_id',$item->id)->where('is_active',1)->withCount('visit')->get();
-                $urls->transform(function($item, $key){
-                    $icon = Icon::where('id',$item->icon_id)->get();
-                    if(count($icon)>0){
-                        $item->icon = $icon[0]->icon_path;
-                    $item->icon_name = $icon[0]->icon_name;
-                    }
+                $item->urls = Medialurl::where('medialtittle_id',$item->id)
+                ->where('is_active',1)
+                ->with('icon')
+                ->withCount('visit')->get();
+                // $urls->transform(function($item, $key){
+                //     $icon = Icon::where('id',$item->icon_id)->get();
+                //     if(count($icon)>0){
+                //         $item->icon = $icon[0]->icon_path;
+                //     $item->icon_name = $icon[0]->icon_name;
+                //     }
                     
-                    return $item;
-                });
-                $item->urls = $urls;
+                //     return $item;
+                // });
+                 
                 return $item;
             });
             
 
             return response()->json(['status'=>'success','code'=>200,'data'=>$tittle[0]]);
         } catch (\Throwable $th) {
-            throw $th;
-            //return response()->json(['status'=>'fail','code'=>400,'error'=>'something went wrong']);
+            //throw $th;
+            return response()->json(['status'=>'fail','code'=>400,'error'=>'something went wrong']);
         }
     }
 

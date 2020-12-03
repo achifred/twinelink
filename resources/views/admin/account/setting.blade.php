@@ -63,7 +63,7 @@
                             <div v-for="item in links" @key="item.id" >
                                 <div class="px-4 py-2 border-b-4 w-10/12 mx-auto border-green-600 rounded  mb-4 " :style="{backgroundColor:textColors, color:bg}">
                                     <span class="text-xl inline-block mr-2 align-middle">
-                                        <img :src="item.icon" alt="">
+                                        <img :src=`${item.icon?item.icon.icon_path:''}` alt="">
                                     </span>
                                     <span class="inline-block align-middle mr-3">
                                         <a :href="item.link"    target="blank"> @{{item.name}}</a>
