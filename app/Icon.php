@@ -18,4 +18,8 @@ class Icon extends Model
         return $this->hasMany(Link::class);
     }
 
+    public function medialurl(){
+        return $this->hasMany(Medialurl::class);
+    }
+
 }

@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+ 
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('/links/{user_id}','LinkController@userLinks');
@@ -36,8 +37,9 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('/user/update/banner/{user_id}','UserController@updateBanner');
     Route::get('/url/visit/stats/{link}/{user_id}','MedialurlVisitController@urlStats');
     Route::post('/media/url','MedialurlController@addUrl');
-    Route::get('/media/urls/{user_id}','MedialurlController@userUrls');
+    
 });
+Route::get('/media/urls/{user_id}','MedialurlController@userUrls');
 
 Route::post('/media/url/update/{url_id}','MedialurlController@updateUrl');
 Route::delete('/media/url/delete/{url_id}','MedialurlController@destroy');

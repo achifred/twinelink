@@ -106,7 +106,7 @@ public function register(Request $request){
 
 
     public function show(User $user){
-        $data['links']= Link::where('user_id',$user->id)->get();
+        $data['links']= Link::where('user_id',$user->id)->with('icon')->get();
         $data['username']=$user->username;
         $data['text_color'] = $user->color->text_color;
         $data['background_color']= $user->color->background_color;

@@ -122,9 +122,9 @@
                             <div class=" flex  justify-between px-4 py-2 border-b-4  mx-auto border-green-600 rounded  mb-4 " style=" background-color:{{auth()->user()->color->text_color}};color:{{auth()->user()->color->background_color}}; ">
                                 <div class="flex justify-around">
                                     <span class="text-xl  mr-2 align-middle">
-                                        <img :src="url.icon" alt=""> 
+                                        <img :src=`${url.icon?url.icon.icon_path:''}` alt=""> 
                                     </span>
-                                    <span class="text-gray-500 hidden lg:block capitalize">@{{url.icon_name}}</span>
+                                    <span class="text-gray-500 hidden lg:block capitalize">@{{url.icon?url.icon.icon_name:''}}</span>
                                 </div>
                                 <div class=" flex justify-around  text-gray-500 hover:text-gray-900">
                                     <button  class="text-green-600 mr-2 "><i class="fa fa-eye"></i>@{{url.visit_count}}</button>
@@ -188,9 +188,9 @@
                             <div class=" flex  justify-between px-4 py-2 border-b-4 w-10/12 mx-auto border-green-600 rounded  mb-4 " style=" background-color:{{auth()->user()->color->text_color}};color:{{auth()->user()->color->background_color}}; ">
                                 <div class="flex justify-around">
                                     <span class="text-xl  mr-2 align-middle">
-                                        <img :src="url.icon" alt=""> 
+                                        <img :src=`${url.icon?url.icon.icon_path:''}` alt=""> 
                                     </span>
-                                    <span class="text-gray-500 capitalize">@{{url.icon_name}}</span>
+                                    <span class="text-gray-500 capitalize">@{{url.icon?url.icon.icon_name:''}}</span>
                                 </div>
                                 <span class=" align-middle mr-3 text-gray-500 hover:text-gray-900">
                                     <a :href="url.url"    target="blank"><i class="fa fa-play"></i> Play </a>

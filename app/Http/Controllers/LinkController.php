@@ -27,13 +27,13 @@ class LinkController extends Controller
     }
 
     public function index(){
-        $data['links'] = Auth::user()->links()
-        ->withCount('visits')
-        ->with('latest_visit')
-        ->get();
-        $data['icons'] = Icon::where('icontype_id',1)->get();
+        // $data['links'] = Auth::user()->links()
+        // ->withCount('visits')
+        // ->with('latest_visit')
+        // ->get();
+        // $data['icons'] = Icon::where('icontype_id',1)->get();
         
-        return view('admin.index',$data);
+        return view('admin.index');
     }
     public function create(){
         return view('links.create');
@@ -51,14 +51,14 @@ class LinkController extends Controller
         //return $data['icon_id'];
     
         $res= Link::create($data);
-        $link = Link::where('id',$res->id)->get();
-        $link->transform(function($item, $key){
-            $icon = Icon::where('id',$item->icon_id)->get();
-            if(count($icon)>0){
-                $item->icon = $icon[0]->icon_path;
-            }
-            return $item;
-        });
+        $link = Link::where('id',$res->id)->with('icon')->get();
+        // $link->transform(function($item, $key){
+        //     $icon = Icon::where('id',$item->icon_id)->get();
+        //     if(count($icon)>0){
+        //         $item->icon = $icon[0]->icon_path;
+        //     }
+        //     return $item;
+        // });
        return $link?response()->json(['status'=>'success','code'=>200,'data'=>$link[0]]):response()->json(['status'=>'fail','code'=>400,'error'=>'something went wrong']);
        } catch (\Throwable $th) {
         //return response()->json(['status'=>'fail','code'=>400,'error'=>'something went wrong']);
@@ -68,15 +68,15 @@ class LinkController extends Controller
     }
 
     public function edit($link){
-       $data = Link::where('id',$link)->get();
-       $data->transform(function($item, $key){
-        $icon = Icon::where('id',$item->icon_id)->get();
-        if(count($icon)>0){
-            $item->icon = $icon[0]->icon_path;
-        }
+       $data = Link::where('id',$link)->with('icon')->get();
+    //    $data->transform(function($item, $key){
+    //     $icon = Icon::where('id',$item->icon_id)->get();
+    //     if(count($icon)>0){
+    //         $item->icon = $icon[0]->icon_path;
+    //     }
         
-        return $item;
-    });
+    //     return $item;
+    // });
        return response()->json(['status'=>'success','code'=>200,'data'=>$data[0]]);
 
     }
@@ -91,15 +91,15 @@ class LinkController extends Controller
             return response()->json(['status'=>'fail','code'=>400,'error'=>$isValid->messages()]);
         }
        $res = Link::where('id',$link)->update($data);
-       $resp =Link::where('id',$link)->get();
-       $resp->transform(function($item, $key){
-        $icon = Icon::where('id',$item->icon_id)->get();
-        if(count($icon)>0){
-            $item->icon = $icon[0]->icon_path;
-        }
+       $resp =Link::where('id',$link)->with('icon')->get();
+    //    $resp->transform(function($item, $key){
+    //     $icon = Icon::where('id',$item->icon_id)->get();
+    //     if(count($icon)>0){
+    //         $item->icon = $icon[0]->icon_path;
+    //     }
     
-        return $item;
-        });
+    //     return $item;
+    //     });
         return $res?response()->json(['status'=>'success','code'=>200,'data'=>$resp]):response()->json(['status'=>'fail','code'=>400,'error'=>'something went wrong']);
         } catch (\Throwable $th) {
             return response()->json(['status'=>'fail','code'=>400,'error'=>'something went wrong']);
@@ -108,14 +108,17 @@ class LinkController extends Controller
 
     }
     public function userLinks($user_id){
-        $link = Link::where('user_id',$user_id)->withCount('visits')->get();
-        $link->transform(function($item, $key){
-            $icon = Icon::where('id',$item->icon_id)->get();
-            if(count($icon)>0){
-                $item->icon = $icon[0]->icon_path;
-            }
-            return $item;
-        });
+        $link = Link::where('user_id',$user_id)->with('icon')->withCount('visits')->get();
+        
+        // $link->transform(function($item, $key){
+        //     $item->icon =  $key; //$item->icon->icon_path;
+        //     //Icon::where('id',$item->icon_id)->get();
+        //     // if(count($icon)>0){
+        //     //     $item->icon = $icon[0]->icon_path;
+        //     // }
+        //     return $item;
+        // });
+        //return $link;
         $data['user_links'] = $link;
         $data['link_impression'] = LinkImpression::where('user_id',$user_id)->sum('impression_count');
         return response()->json(['status'=>'success','code'=>200,'data'=>$data]);

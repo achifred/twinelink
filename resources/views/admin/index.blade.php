@@ -228,13 +228,13 @@
                                     <div  class="lg:px-4 lg:py-2 border-b-4 w-10/12 mx-auto border-green-600 rounded  mb-4 "
                                         style=" background-color:{{ auth()->user()->color->text_color }};color:{{ auth()->user()->color->background_color }}; ">
                                         <span class="text-xl inline-block mr-2 align-middle">
-                                            <img :src="item.icon" alt="">
+                                            <img :src=`${item.icon?item.icon.icon_path:''}` alt="">
                                         </span>
                                         <span class="inline-block align-middle mr-3">
                                             <a :href="item.link" target="blank" class="capitalize"> @{{ item . name }}</a>
                                         </span>
 
-                                    </div>
+                                    </div> 
 
 
 
