@@ -20,19 +20,19 @@
                      <small class="text-center pt-8 text-gray-500"><small>@</small>{{$username}}</small>
                 </div>
                 <div class="flex flex-col text-center pt-5 ">
-                <div class="container mx-auto ">
+                <div class="container mx-auto pt-5 ">
                     @foreach ($links as $item)
-                <a href="{{$item->link}}">
+                
                     <div class=" w-10/12  container mx-auto  px-4 py-2 border-b-4 border-green-600 rounded  mb-4 "  style=" background-color:{{$text_color}};color:{{$background_color}};">
                         <span class="text-xl inline-block mr-1 align-middle">
                         <img src="{{$item->icon?$item->icon->icon_path:''}}" alt="">
                         </span>
                         
-                            <a href="{{$item->link}}" class=" inline-block align-middle mr-1"   target="blank"  @click="addVisit({{$item->id}})"> {{$item->name}} </a>
+                            <a href="{{$item->link}}" class="inline-block align-middle mr-1"   target="blank"  @click="addVisit({{$item->id}})"> {{$item->name}} </a>
                         
                         
                       </div>
-                </a>
+                
                
                 @endforeach
                 </div>
